@@ -1,10 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <body>
-$END$
+<div th:fragment="nav">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">院校大全</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">所在区域 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">华东</a></li>
+                            <li><a href="#">华南</a></li>
+                            <li><a href="#">华中</a></li>
+                            <li><a href="#">华北</a></li>
+                            <li><a href="#">西南</a></li>
+                            <li><a href="#">东北</a></li>
+                            <li><a href="#">港澳台</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">院校类型 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">综合</a></li>
+                            <li><a href="#">工科</a></li>
+                            <li><a href="#">师范</a></li>
+                            <li><a href="#">财经</a></li>
+                            <li><a href="#">艺术</a></li>
+                            <li><a href="#">农业</a></li>
+                            <li><a href="#">体育</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">批次 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">一批本科</a></li>
+                            <li><a href="#">二批本科</a></li>
+                            <li><a href="#">专科</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="搜索大学">
+                    </div>
+                    <button type="submit" class="btn btn-default">搜索</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</div>
 </body>
 </html>

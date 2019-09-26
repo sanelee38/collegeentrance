@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>学校介绍</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/college.css">
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="/js/moment.js" type="application/javascript"></script>
+</head>
+<body>
+<div>
+    <div class="container-fluid">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="panel panel-default" >
+                <div class="panel-heading">2018年分数线</div>
+                <div class="form-group  col-sm-2">
+                    <label class="col-form-label" ></label>
+                    <select  class="form-control" id="status" name="status">
+                        <option value="">全部</option>
+                        <option th:each="scores: ${score}" th:value="${scores.scid}" th:text="${scores.area}"></option>
+                    </select>
+                </div>
+                <div class="panel-body">
+                    <p></p>
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>省份</th>
+                        <th>最高分</th>
+                        <th>平均分</th>
+                        <th>最低分</th>
+                        <th>最低位次</th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="scores:${score}">
+                    <tr>
+                        <th scope="row" th:text="${scores.area}"></th>
+                        <td  th:text="${scores.max_score}"></td>
+                        <td  th:text="${scores.avg_score}"></td>
+                        <td  th:text="${scores.min_score}"></td>
+                        <td  th:text="${scores.min_rank}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div th:insert="~{navigation :: nav}"></div>
+</body>
+</html>

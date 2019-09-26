@@ -1,10 +1,45 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>高考志愿填报</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/college.css">
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.min.js" type="application/javascript"></script>
 </head>
 <body>
-<p th:text="'Hello, ' + ${name} + '!'" />
+<div>
+    <div class="container-fluid main">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="jumbotron">
+                    <h1>高考志愿填报助手</h1>
+                    <p>高考，人生的第一关</p>
+                    <p><a class="btn btn-primary btn-lg" href="#" role="button">更多</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="menu">
+            <div class="div-inline school-icon">
+                <a class="glyphicon glyphicon-book" href="/school" style="text-decoration: none;"></a>
+                <h4 class="font">院校大全</h4>
+            </div>
+            <div class="div-inline major-icon">
+                <a class="glyphicon glyphicon-th-large" href="/school" style="text-decoration: none;" ></a>
+                <h4 class="font">专业大全</h4>
+            </div>
+            <div class="div-inline score-icon">
+                <a class="glyphicon glyphicon-signal" href="/school" style="text-decoration: none;"></a>
+                <h4 class="font">分数线</h4>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div th:insert="~{navigation :: nav}"></div>
 </body>
 </html>

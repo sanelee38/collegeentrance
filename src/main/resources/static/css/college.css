@@ -1,0 +1,19 @@
+.menu .school-icon{
+    font-size: 60px;
+    margin-left: 63px;
+}
+.menu .major-icon{
+    font-size: 60px;
+    margin-left: 180px;
+}
+.menu .score-icon{
+    font-size: 60px;
+    margin-left: 180px;
+}
+.menu .font{
+    margin-top: -15px;
+}
+.div-inline{
+    display:inline-block;
+
+}
