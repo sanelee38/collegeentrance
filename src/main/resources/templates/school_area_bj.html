@@ -3,21 +3,77 @@
 <head>
     <title>院校大全</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="/css/college.css">
-    <script src="/js/jquery-3.4.1.min.js"></script>
-    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
-    <script src="/js/moment.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/college.css">
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="js/moment.js" type="application/javascript"></script>
 </head>
 <body>
-<div th:insert="~{school_nav :: nav}"></div>
+<div th:fragment="nav">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/school">院校大全</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">北京 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/school_area_bj">北京</a></li>
+                            <li><a href="/school_area_hb">河北</a></li>
+                            <li><a href="/school_area_cq">重庆</a></li>
+                            <li><a href="/school_area_hn">湖南</a></li>
+                            <li><a href="/school_area_yn">云南</a></li>
+                            <li><a href="/school_area_sx">陕西</a></li>
+                            <li><a href="/school_area_hlj">黑龙江</a></li>
+                        </ul>
+                    </li>
+<!--                    <li class="dropdown">-->
+<!--                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">院校类型 <span class="caret"></span></a>-->
+<!--                        <ul class="dropdown-menu">-->
+<!--                            <li><a href="#">综合</a></li>-->
+<!--                            <li><a href="#">工科</a></li>-->
+<!--                            <li><a href="#">师范</a></li>-->
+<!--                            <li><a href="#">财经</a></li>-->
+<!--                            <li><a href="#">艺术</a></li>-->
+<!--                            <li><a href="#">农业</a></li>-->
+<!--                            <li><a href="#">体育</a></li>-->
+<!--                        </ul>-->
+<!--                    </li>-->
+<!--                    <li class="dropdown">-->
+<!--                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">批次 <span class="caret"></span></a>-->
+<!--                        <ul class="dropdown-menu">-->
+<!--                            <li><a href="#">一批本科</a></li>-->
+<!--                            <li><a href="#">二批本科</a></li>-->
+<!--                            <li><a href="#">专科</a></li>-->
+<!--                        </ul>-->
+<!--                    </li>-->
+                </ul>
+                <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="搜索大学">
+                    </div>
+                    <button type="submit" class="btn btn-default">搜索</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</div>
 <div>
     <div class="container-fluid">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <ul class="list-group" th:each="school:${schools}">
                 <li class="media" >
-                    <a th:href="@{'school_desc/'+${school.scid}}" style="text-decoration: none;">
+                    <a th:href="@{'school_desc_l/'+${school.scid}}" style="text-decoration: none;">
                         <div class="media-body" >
                             <h4 class="media-heading" th:text="${school.name}"></h4>
                         </div>

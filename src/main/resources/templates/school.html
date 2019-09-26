@@ -3,27 +3,190 @@
 <head>
     <title>院校大全</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="css/college.css">
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/bootstrap.min.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/college.css">
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="/js/moment.js" type="application/javascript"></script>
 </head>
-<body>
-<div th:insert="~{school_nav :: nav}"></div>
-<div>
-    <div class="container-fluid">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="list-group">
-                    <a href="#" class="list-group-item">西安科技大学</a>
-                    <a href="#" class="list-group-item">西安电子科技大学</a>
-                    <a href="#" class="list-group-item">西安建筑科技大学</a>
-                    <a href="#" class="list-group-item">西北农林科技大学</a>
-                </div>
+<body class="diamond">
+<div th:fragment="nav">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/school">院校大全</a>
             </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <select name="status" id="tabs" class="areaselect">
+                            <option>所在区域</option>
+                            <option>陕西</option>
+                            <option>北京</option>
+                            <option>云南</option>
+                            <option>重庆</option>
+                            <option>河北</option>
+                            <option>黑龙江</option>
+                            <option>湖南</option>
+                        </select>
+<!--                        <select name="status" id="tabs" >-->
+<!--                            <option>所在区域</option>-->
+<!--                            <option>陕西</option>-->
+<!--                            <option>北京</option>-->
+<!--                            <option>云南</option>-->
+<!--                            <option>重庆</option>-->
+<!--                            <option>河北</option>-->
+<!--                            <option>黑龙江</option>-->
+<!--                            <option>湖南</option>-->
+<!--                        </select>-->
+                    <!--                    <li class="dropdown">-->
+                    <!--                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">批次 <span class="caret"></span></a>-->
+                    <!--                        <ul class="dropdown-menu">-->
+                    <!--                            <li><a href="#">一批本科</a></li>-->
+                    <!--                            <li><a href="#">二批本科</a></li>-->
+                    <!--                            <li><a href="#">专科</a></li>-->
+                    <!--                        </ul>-->
+                        <!--                </li>-->
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="搜索大学">
+                    </div>
+                    <button type="submit" class="btn btn-default">搜索</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</div>
+<div id="content">
+    <div id ="chanpin1" >
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ul class="list-group" th:each="school:${schoolsSx}">
+                <li class="media" >
+                    <a th:href="@{'school_desc_l/'+${school.scid}}" style="text-decoration: none;">
+                        <div class="media-body" >
+                            <h4 class="media-heading" th:text="${school.name}"></h4>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id ="chanpin2"  >
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ul class="list-group" th:each="school:${schoolsBj}">
+                <li class="media" >
+                    <a th:href="@{'school_desc_l/'+${school.scid}}" style="text-decoration: none;">
+                        <div class="media-body" >
+                            <h4 class="media-heading" th:text="${school.name}"></h4>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id ="chanpin3">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ul class="list-group" th:each="school:${schoolsYn}">
+                <li class="media" >
+                    <a th:href="@{'school_desc_l/'+${school.scid}}" style="text-decoration: none;">
+                        <div class="media-body" >
+                            <h4 class="media-heading" th:text="${school.name}"></h4>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id ="chanpin4">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ul class="list-group" th:each="school:${schoolsCq}">
+                <li class="media" >
+                    <a th:href="@{'school_desc_l/'+${school.scid}}" style="text-decoration: none;">
+                        <div class="media-body" >
+                            <h4 class="media-heading" th:text="${school.name}"></h4>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id ="chanpin5">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ul class="list-group" th:each="school:${schoolsHb}">
+                <li class="media" >
+                    <a th:href="@{'school_desc_l/'+${school.scid}}" style="text-decoration: none;">
+                        <div class="media-body" >
+                            <h4 class="media-heading" th:text="${school.name}"></h4>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id ="chanpin6">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ul class="list-group" th:each="school:${schoolsHlj}">
+                <li class="media" >
+                    <a th:href="@{'school_desc_l/'+${school.scid}}" style="text-decoration: none;">
+                        <div class="media-body" >
+                            <h4 class="media-heading" th:text="${school.name}"></h4>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id ="chanpin7">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ul class="list-group" th:each="school:${schoolsHn}">
+                <li class="media" >
+                    <a th:href="@{'school_desc_l/'+${school.scid}}" style="text-decoration: none;">
+                        <div class="media-body" >
+                            <h4 class="media-heading" th:text="${school.name}"></h4>
+                        </div>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
+<script>
+    $(function(){
+        var li = $('#tabs');
+        var cc=$('#tabs option');
+        var len=cc.length;
+        li.change(function(){
+            //  alert(123);
+            var t = parseInt(li.get(0).selectedIndex);
+            // var id=$('#chanpin'+t);
+            //  alert(t) ;
+            for(var i= 1;i<len;i++){
+                if(t==i){
+                    // alert(i);
+                    $('#chanpin'+t).show();
+                }else{
+                    $('#chanpin'+i).hide();
+                }
+                if(t==0){$('#chanpin'+i).show();}
+            }
+        });
+    });
+</script>
 <div th:insert="~{navigation :: nav}"></div>
 </body>
 </html>

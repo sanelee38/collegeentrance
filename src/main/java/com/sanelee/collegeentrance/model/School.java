@@ -1,4 +1,18 @@
 package com.sanelee.collegeentrance.model;
 
-public class school {
+import lombok.Data;
+
+import java.io.Serializable;
+import java.util.List;
+
+@Data
+public class School{
+    private Integer scid;
+    private String name;
+    private String areaname;
+    private Integer areaid;
+    private String batch;
+    private char description;
+    private String acronym;
+
 }

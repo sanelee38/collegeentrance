@@ -1,11 +1,10 @@
 package com.sanelee.collegeentrance.dto;
 
-import com.sanelee.collegeentrance.model.Area;
 import com.sanelee.collegeentrance.model.School;
 import lombok.Data;
 
 @Data
-public class ScoreDTO {
+public class Score2017DTO {
     private Integer scid;
     private Integer aid;
     private String area;

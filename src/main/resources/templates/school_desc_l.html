@@ -15,34 +15,81 @@
     <div class="container-fluid">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="panel panel-default" >
-                <div class="panel-heading">2018年分数线</div>
-                <div class="form-group  col-sm-2">
-                    <label class="col-form-label" ></label>
-                    <select  class="form-control" id="status" name="status">
-                        <option value="">全部</option>
-                        <option th:each="scores: ${score}" th:value="${scores.scid}" th:text="${scores.area}"></option>
-                    </select>
+                <div class="panel-heading">2018年录取分数线</div>
+                <div id="tabs">
+                        <ul width="100%" >
+                            <li class="on">理科</li>
+                            <li>文科</li>
+                        </ul>
+                    <div>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>省份</th>
+                                <th>最高分</th>
+                                <th>平均分</th>
+                                <th>最低分</th>
+                                <th>最低位次</th>
+                            </tr>
+                            </thead>
+                            <tbody th:each="scores:${score}">
+                            <tr>
+                                <th scope="row" th:text="${scores.area}"></th>
+                                <td  th:text="${scores.maxscore}"></td>
+                                <td  th:text="${scores.avgscore}"></td>
+                                <td  th:text="${scores.minscore}"></td>
+                                <td  th:text="${scores.minrank}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="hide" >
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>省份</th>
+                                <th>最高分</th>
+                                <th>平均分</th>
+                                <th>最低分</th>
+                                <th>最低位次</th>
+                            </tr>
+                            </thead>
+                            <tbody th:each="scoresW:${scoreW}">
+                            <tr>
+                                <th scope="row" th:text="${scoresW.area}"></th>
+                                <td  th:text="${scoresW.maxscore}"></td>
+                                <td  th:text="${scoresW.avgscore}"></td>
+                                <td  th:text="${scoresW.minscore}"></td>
+                                <td  th:text="${scoresW.minrank}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
+
+            <div class="panel panel-default" >
+                <div class="panel-heading">招生专业</div>
                 <div class="panel-body">
                     <p></p>
                 </div>
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>省份</th>
+                        <th>专业</th>
                         <th>最高分</th>
                         <th>平均分</th>
                         <th>最低分</th>
                         <th>最低位次</th>
                     </tr>
                     </thead>
-                    <tbody th:each="scores:${score}">
+                    <tbody th:each="professions:${profession} ">
                     <tr>
-                        <th scope="row" th:text="${scores.area}"></th>
-                        <td  th:text="${scores.max_score}"></td>
-                        <td  th:text="${scores.avg_score}"></td>
-                        <td  th:text="${scores.min_score}"></td>
-                        <td  th:text="${scores.min_rank}"></td>
+                        <th scope="row" th:text="${professions.proname}" ></th>
+                        <td th:text="${professions.maxscore}"></td>
+                        <td th:text="${professions.avgscore}"></td>
+                        <td th:text="${professions.minscore}"></td>
+                        <td th:text="${professions.minrank}"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -52,5 +99,25 @@
 </div>
 </div>
 <div th:insert="~{navigation :: nav}"></div>
+<script type="text/javascript">
+    $(function(){
+        var oTab = document.getElementById("tabs");
+        var oUl = oTab.getElementsByTagName("ul")[0];
+        var oLis = oUl.getElementsByTagName("li");
+        var oDivs= oTab.getElementsByTagName("div");
+
+        for(var i= 0,len = oLis.length;i<len;i++){
+            oLis[i].index = i;
+            oLis[i].onclick = function() {
+                for(var n= 0;n<len;n++){
+                    oLis[n].className = "";
+                    oDivs[n].className = "hide";
+                }
+                this.className = "on";
+                oDivs[this.index].className = "";
+            }
+        };
+    })
+</script>
 </body>
 </html>

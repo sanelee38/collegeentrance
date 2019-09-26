@@ -3,7 +3,7 @@ package com.sanelee.collegeentrance.model;
 import lombok.Data;
 
 @Data
-public class Score {
+public class Score2017 {
     private Integer scid;
     private Integer aid;
     private String area;

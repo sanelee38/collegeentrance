@@ -1,10 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>matriculate</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/college.css">
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="/js/moment.js" type="application/javascript"></script>
+    <style>
+        mark {
+            background-color:#FF0000; font-weight:bold;
+        }
+    </style>
 </head>
 <body>
-$END$
+<div class="page-header">
+    <h1 style="margin-left: 100px">选择报考的学校并输入你的高考成绩<small style="margin-left: 75px">即可获取你的录取概率</small></h1>
+</div>
+<center>
+
+    <br><br>
+    <h2 style="color:red">录取概率查询</h2>
+    <br><br>
+
+    <form class="form-horizontal" role="form" action="#" th:action="@{/mathoper}" th:object="${expression}" method="post">
+
+        <div class="form-group" style="width:500px">
+            <label for="expression" class="col-sm-4 control-label">输入成绩：</label>
+            <div class="col-sm-8">
+                <input type="text"  th:field="*{expr}" class="form-control" id="expression" placeholder="Enter a expression">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div>
+                <button type="submit" class="btn btn-primary" id="btn">确认</button>
+                <input type="reset" class="btn btn-warning" value="Reset" />
+            </div>
+        </div>
+    </form>
+
+    <p th:utext="${answer}"></p>
+
+</center>
+<div th:insert="~{navigation :: nav}"></div>
 </body>
 </html>
