@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sanelee.collegeentrance.mapper.SchoolMapper">
+  <select id="list" resultType="School">
+    select * from school
+  </select>
+  <select id="listBJ" resultType="School">
+    select * from school where areaid = 1
+  </select>
+  <select id="listHB" resultType="School">
+    select * from school where areaid = 2
+  </select>
+  <select id="listCQ" resultType="School">
+    select * from school where areaid = 3
+  </select>
+  <select id="listHN" resultType="School">
+    select * from school where areaid = 4
+  </select>
+  <select id="listYN" resultType="School">
+    select * from school where areaid = 5
+  </select>
+  <select id="listSX" resultType="School">
+    select * from school where areaid = 6
+  </select>
+  <select id="listHLJ" resultType="School">
+    select * from school where areaid = 7
+  </select>
+  <select id="findByScid"
+          resultType="com.sanelee.collegeentrance.model.School">
+    Select * from school where scid = #{scid}
+  </select>
+  <select id="findByPid"
+          resultType="com.sanelee.collegeentrance.model.School">
+    SELECT school.`scid`, school.`name`
+    FROM school
+        INNER JOIN t_school_profession
+            ON t_school_profession.`scid`=school.`scid`
+        INNER JOIN profession
+            ON profession.`pid`=#{pid}
+                   AND t_school_profession.`pid`=profession.`pid`;
+  </select>
+</mapper>

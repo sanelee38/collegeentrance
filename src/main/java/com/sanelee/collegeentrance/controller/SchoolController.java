@@ -1,8 +1,10 @@
 package com.sanelee.collegeentrance.controller;
 
 
+import com.sanelee.collegeentrance.dto.SearchDTO;
 import com.sanelee.collegeentrance.mapper.SchoolMapper;
 import com.sanelee.collegeentrance.model.School;
+import com.sanelee.collegeentrance.service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableMBeanExport;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -17,9 +20,11 @@ public class SchoolController {
 
     @Autowired
     private SchoolMapper schoolMapper;
+    @Autowired
+    private SchoolService schoolService;
+
     @GetMapping("/school")
-    public String school(Model model,
-                         @RequestParam(name = "search",required = false) String search){
+    public String school(Model model){
         List<School> schoolList = schoolMapper.list();
         List<School> schoolListBj = schoolMapper.listBJ();
         List<School> schoolListCq = schoolMapper.listCQ();
@@ -39,11 +44,13 @@ public class SchoolController {
         return "school";
     }
 
-    @GetMapping("/school_area_bj")
-    public String schoolAreaBJ(Model model){
-        List<School> schoolList = schoolMapper.listBJ();
-        model.addAttribute("schools",schoolList);
-        return "school_area_bj";
+    @GetMapping("/schoolSearch")
+    public String schoolSearch(HttpServletRequest request,
+                               Model model,
+                               @RequestParam(name = "search",required = false) String search){
+        SearchDTO searchs = schoolService.list(search);
+        model.addAttribute("searchss",searchs);
+        return "schoolSearch";
     }
 //
 //    @GetMapping("/school_area_cq")

@@ -1,5 +1,6 @@
 package com.sanelee.collegeentrance.mapper;
 
+import com.sanelee.collegeentrance.dto.SchoolQueryDTO;
 import com.sanelee.collegeentrance.model.School;
 import org.apache.ibatis.annotations.*;
 
@@ -40,5 +41,6 @@ public interface SchoolMapper {
     @Select("SELECT school.`scid`, school.`name` FROM school INNER JOIN t_school_profession ON t_school_profession.`scid`=school.`scid` INNER JOIN profession ON profession.`pid`=#{pid} AND t_school_profession.`pid`=profession.`pid`;")
     List<School> findByPid(@Param("pid") int pid);
 
-
+    @Select("select * from school where school.`name` regexp #{search}")
+    List<School> selectBySearch(SchoolQueryDTO schoolQueryDTO);
 }

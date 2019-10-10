@@ -1,13 +1,13 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
 <head>
     <title>高考志愿填报</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="css/college.css">
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/bootstrap.min.js" type="application/javascript"></script>
+    <meta name="viewport" http-equiv="Content-Type" content="text/html; charset=UTF-8;width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/college.css">
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
 </head>
 <body>
 <div>
@@ -23,26 +23,30 @@
         </div>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="menu">
-            <div class="div-inline school-icon">
+        <div class="menu row">
+            <div class="col-xs-4 col-md-4 score-icon ">
                 <a class="glyphicon glyphicon-book" href="/school" style="text-decoration: none;"></a>
-                <h4 class="font" style="margin-left: -5px">院校大全</h4>
+                <h4>院校大全</h4>
             </div>
-            <div class="div-inline major-icon">
+            <div class="col-xs-4 col-md-4 score-icon">
                 <a class="glyphicon glyphicon-th-large" href="/profession" style="text-decoration: none;" ></a>
-                <h4 class="font" style="margin-left: -7px">专业大全</h4>
+                <h4>专业大全</h4>
             </div>
-            <div class="div-inline score-icon">
-                <a class="glyphicon glyphicon-signal" href="/school" style="text-decoration: none;"></a>
-                <h4 class="font" style="margin-left: -13px">分数线查询</h4>
+            <div class="col-xs-4 col-md-4 score-icon">
+                <a class="glyphicon glyphicon-signal" href="/scoreline" style="text-decoration: none;"></a>
+                <h4>分数线查询</h4>
             </div>
-            <div class="div-inline score-icon">
+            <div class="col-xs-4 col-md-4 score-icon">
                 <a class="glyphicon glyphicon-list-alt" href="/school" style="text-decoration: none;"></a>
-                <h4 class="font" style="margin-left: -21px">测性格找专业</h4>
+                <h4>测性格找专业</h4>
             </div>
-            <div class="div-inline score-icon">
+            <div class="col-xs-4 col-md-4 score-icon">
                 <a class="glyphicon glyphicon-question-sign" href="/matriculate" style="text-decoration: none;"></a>
-                <h4 class="font" style="margin-left: -21px">录取概率测试</h4>
+                <h4>录取概率测试</h4>
+            </div>
+            <div class="col-xs-4 col-md-4 score-icon">
+                <a class="glyphicon glyphicon-user" href="/matriculate" style="text-decoration: none;"></a>
+                <h4>开发人员</h4>
             </div>
 
         </div>

@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>登录</title>
+    <meta name="viewport" http-equiv="Content-Type" content="text/html;charset=UTF-8;width=device-width;initial-scale=1" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/college.css">
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
 </head>
 <body>
-$END$
+<form action="/front/addlogin" name="loginfrom" accept-charset="utf-8" method="post">
+    <label class="label-tips" for="u">账号:</label>
+    <input type="text" id="u" name="username" class="inputstyle"/>
+    <div>
+        <label class="lable-tips" for="password">密码:</label>
+        <input type="password" id="password" name="password" class="inputstyle" />
+    </div>
+    <input type="submit" name="登录"/>
+    <a href="register" class="zcxy" target="_blank">注册</a>
+</form>
+<div th:insert="~{navigation :: nav}"></div>
 </body>
 </html>

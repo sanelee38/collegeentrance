@@ -1,4 +1,8 @@
 package com.sanelee.collegeentrance.mapper;
 
-public class UserMapper {
+import com.sanelee.collegeentrance.model.User;
+import org.springframework.data.repository.CrudRepository;
+
+public interface UserMapper extends CrudRepository<User,Long> {
+    public User findByUsernameAndPassword(String username,String password);
 }

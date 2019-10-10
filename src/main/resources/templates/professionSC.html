@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>开设专业院校</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" http-equiv="Content-Type" content="text/html; charset=UTF-8;width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/college.css">
@@ -11,6 +11,13 @@
     <script src="/js/moment.js" type="application/javascript"></script>
 </head>
 <body>
+<div class="page-header" style="margin-left: 30px">
+    <h2>安全工程</h2>
+    <h5>安全工程是隶属于一级学科“安全科学与工程（学科代码0837）”的一个二级学科，
+        该专业注重培养能从事安全技术及工程、安全科学与研究、安全监察与管理、
+        工作场所危险有害因素识别与检测、安全设计与生产、安全教育与培训、
+        生产型企业职业卫生防护等方面复合型的高级工程技术人才，是一个涉及面极广的综合交叉学科。</h5>
+</div>
 <div th:fragment="nav">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -21,14 +28,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/school">开设专业院校</a>
+                <a class="navbar-brand">开设专业院校</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <form class="navbar-form navbar-right">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="搜索学校">
-                    </div>
-                    <button type="submit" class="btn btn-default">搜索</button>
                 </form>
             </div>
         </div>

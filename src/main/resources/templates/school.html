@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
 <head>
     <title>院校大全</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" http-equiv="Content-Type" content="text/html; charset=UTF-8;width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/college.css">
@@ -26,8 +26,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <select name="status" id="tabs" class="areaselect">
-                            <option>所在区域</option>
+                        <select name="status" id="tabs" class=" form-control select">
                             <option>陕西</option>
                             <option>北京</option>
                             <option>云南</option>
@@ -56,9 +55,9 @@
                         <!--                </li>-->
                     </li>
                 </ul>
-                <form class="navbar-form navbar-right">
+                <form class="navbar-form navbar-right" action="/schoolSearch" method="get">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="搜索大学">
+                        <input type="text" class="form-control" name="search" placeholder="搜索大学">
                     </div>
                     <button type="submit" class="btn btn-default">搜索</button>
                 </form>
@@ -67,7 +66,7 @@
     </nav>
 </div>
 <div id="content">
-    <div id ="chanpin1" >
+    <div id ="chanpin0" >
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <ul class="list-group" th:each="school:${schoolsSx}">
                 <li class="media" >
@@ -81,7 +80,7 @@
         </div>
     </div>
 
-    <div id ="chanpin2"  >
+    <div id ="chanpin1"  >
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <ul class="list-group" th:each="school:${schoolsBj}">
                 <li class="media" >
@@ -95,7 +94,7 @@
         </div>
     </div>
 
-    <div id ="chanpin3">
+    <div id ="chanpin2">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <ul class="list-group" th:each="school:${schoolsYn}">
                 <li class="media" >
@@ -109,7 +108,7 @@
         </div>
     </div>
 
-    <div id ="chanpin4">
+    <div id ="chanpin3">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <ul class="list-group" th:each="school:${schoolsCq}">
                 <li class="media" >
@@ -123,7 +122,7 @@
         </div>
     </div>
 
-    <div id ="chanpin5">
+    <div id ="chanpin4">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <ul class="list-group" th:each="school:${schoolsHb}">
                 <li class="media" >
@@ -137,7 +136,7 @@
         </div>
     </div>
 
-    <div id ="chanpin6">
+    <div id ="chanpin5">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <ul class="list-group" th:each="school:${schoolsHlj}">
                 <li class="media" >
@@ -151,7 +150,7 @@
         </div>
     </div>
 
-    <div id ="chanpin7">
+    <div id ="chanpin6">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <ul class="list-group" th:each="school:${schoolsHn}">
                 <li class="media" >
@@ -166,23 +165,30 @@
     </div>
 </div>
 <script>
+    $(document).ready(function(){
+        $("#chanpin1").hide();
+        $("#chanpin2").hide();
+        $("#chanpin3").hide();
+        $("#chanpin4").hide();
+        $("#chanpin5").hide();
+        $("#chanpin6").hide();
+    });
     $(function(){
         var li = $('#tabs');
         var cc=$('#tabs option');
         var len=cc.length;
         li.change(function(){
-            //  alert(123);
             var t = parseInt(li.get(0).selectedIndex);
-            // var id=$('#chanpin'+t);
-            //  alert(t) ;
-            for(var i= 1;i<len;i++){
+            var id=$('#chanpin'+t);
+            // alert(t) ;
+            for(var i= 0;i<len;i++){
                 if(t==i){
                     // alert(i);
                     $('#chanpin'+t).show();
                 }else{
                     $('#chanpin'+i).hide();
                 }
-                if(t==0){$('#chanpin'+i).show();}
+                // if(t==0){$('#chanpin'+i).show();}
             }
         });
     });
