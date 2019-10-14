@@ -12,7 +12,7 @@ public class SchoolDTO {
     private String areaname;
     private Integer areaid;
     private String batch;
-    private char description;
+    private String description;
     private String acronym;
     private Profession pid;
 

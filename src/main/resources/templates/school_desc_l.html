@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>学校介绍</title>
+    <title th:text="${schools.name}"></title>
     <meta name="viewport" http-equiv="Content-Type"
           content="text/html; charset=UTF-8;width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -12,13 +12,10 @@
     <script src="/js/moment.js" type="application/javascript"></script>
 </head>
 <body style="padding-bottom: 70px; ">
-<div class="page-header" style="margin-left: 30px">
-    <h2>西安科技大学</h2>
-    <h4>（Xi’an University of Science and Technology）</h4>
-    <h5>西安科技大学（Xi’an University of Science and Technology）位于世界历史名城西安，
-        学校办学历史可以追溯到1895年成立的北洋大学工学院采矿冶金科，1938年迁并于西北工学院矿冶系，
-        1957年并入西安交通大学，1958年从西安交通大学分出成立独立的西安矿业学院，是当时隶属原煤炭工业部仅有的2所5年制本科院校之一。
-        1998年学校实行“中央与地方共建，以地方管理为主”，划转陕西省。1999年更名为西安科技学院，2003年更名为西安科技大学。</h5>
+<div class="page-header" style="margin-left: 30px" >
+    <h2 th:text="${schools.name}"></h2>
+    <h4 th:text="${schools.acronym}"></h4>
+    <h5 th:text="${schools.description}"></h5>
 </div>
 <div>
     <div class="container-fluid">
@@ -44,10 +41,10 @@
                                         <thead>
                                         <tr>
                                             <th>省份</th>
-                                            <th>最高分</th>
-                                            <th>平均分</th>
-                                            <th>最低分</th>
-                                            <th>最低位次</th>
+                                            <td>最高分</td>
+                                            <td>平均分</td>
+                                            <td>最低分</td>
+                                            <td>最低位次</td>
                                         </tr>
                                         </thead>
                                         <tbody th:each="scores:${score}">
@@ -57,6 +54,7 @@
                                             <td th:text="${scores.avgscore}"></td>
                                             <td th:text="${scores.minscore}"></td>
                                             <td th:text="${scores.minrank}"></td>
+<!--                                            <td th:text="${scores.school.description}"></td>-->
                                         </tr>
                                         </tbody>
                                     </table>
@@ -66,10 +64,10 @@
                                         <thead>
                                         <tr>
                                             <th>省份</th>
-                                            <th>最高分</th>
-                                            <th>平均分</th>
-                                            <th>最低分</th>
-                                            <th>最低位次</th>
+                                            <td>最高分</td>
+                                            <td>平均分</td>
+                                            <td>最低分</td>
+                                            <td>最低位次</td>
                                         </tr>
                                         </thead>
                                         <tbody th:each="scoresW:${scoreW}">
@@ -94,15 +92,15 @@
                                 <thead>
                                 <tr>
                                     <th>专业</th>
-                                    <th>最高分</th>
-                                    <th>平均分</th>
-                                    <th>最低分</th>
-                                    <th width="25%">最低位次</th>
+                                    <td>最高分</td>
+                                    <td>平均分</td>
+                                    <td>最低分</td>
+                                    <td width="25%">最低位次</td>
                                 </tr>
                                 </thead>
                                 <tbody th:each="professions:${profession}">
-                                <tr th:href="@{'professionSC/'+${professions.pid}}">
-                                    <th scope="row"  th:text="${professions.proname}"></th>
+                                <tr >
+                                    <th scope="row" th:href="@{'professionSC/'+${professions.pid}}" th:text="${professions.proname}"></th>
                                     <td th:text="${professions.maxscore}"></td>
                                     <td th:text="${professions.avgscore}"></td>
                                     <td th:text="${professions.minscore}"></td>
@@ -124,10 +122,10 @@
                                         <thead>
                                         <tr>
                                             <th>省份</th>
-                                            <th>最高分</th>
-                                            <th>平均分</th>
-                                            <th>最低分</th>
-                                            <th>最低位次</th>
+                                            <td>最高分</td>
+                                            <td>平均分</td>
+                                            <td>最低分</td>
+                                            <td>最低位次</td>
                                         </tr>
                                         </thead>
                                         <tbody th:each="scores2017:${score2017}">
@@ -146,10 +144,10 @@
                                         <thead>
                                         <tr>
                                             <th>省份</th>
-                                            <th>最高分</th>
-                                            <th>平均分</th>
-                                            <th>最低分</th>
-                                            <th>最低位次</th>
+                                            <td>最高分</td>
+                                            <td>平均分</td>
+                                            <td>最低分</td>
+                                            <td>最低位次</td>
                                         </tr>
                                         </thead>
                                         <tbody th:each="scoresW2017:${scoreW2017}">
@@ -174,10 +172,10 @@
                                 <thead>
                                 <tr>
                                     <th>专业</th>
-                                    <th>最高分</th>
-                                    <th>平均分</th>
-                                    <th>最低分</th>
-                                    <th width="25%">最低位次</th>
+                                    <td>最高分</td>
+                                    <td>平均分</td>
+                                    <td>最低分</td>
+                                    <td width="25%">最低位次</td>
                                 </tr>
                                 </thead>
                                 <tbody th:each="professions:${profession}">

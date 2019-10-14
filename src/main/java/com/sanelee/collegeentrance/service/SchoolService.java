@@ -30,7 +30,6 @@ public class SchoolService {
         schoolQueryDTO.setSearch(search);
         List<School> schools = schoolMapper.selectBySearch(schoolQueryDTO);
         List<SchoolDTO> schoolDTOList = new ArrayList<>();
-
         for (School school : schools){
             SchoolDTO schoolDTO = new SchoolDTO();
             BeanUtils.copyProperties(school,schoolDTO);

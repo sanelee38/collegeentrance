@@ -10,7 +10,7 @@ import java.util.List;
 
 @Mapper
 public interface ProfessionMapper {
-    @Select("select * from profession")
+    @Select("select * from profession ORDER BY pid")
     List<Profession> list();
 
     @Select("SELECT * FROM t_school_profession INNER JOIN profession ON t_school_profession.pid = profession.pid WHERE scid = #{scid};")

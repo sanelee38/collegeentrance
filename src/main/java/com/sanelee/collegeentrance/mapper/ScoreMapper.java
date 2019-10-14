@@ -24,4 +24,5 @@ public interface ScoreMapper {
 
     @Select("select * from score where scid = #{scid}")
     List<Score> getByScid(@Param("scid") Integer scid);
+
 }

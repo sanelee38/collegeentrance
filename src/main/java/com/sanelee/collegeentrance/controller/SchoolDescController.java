@@ -45,6 +45,7 @@ public class SchoolDescController {
     @RequestMapping("/school_desc_l/{scid}")
     public String schoolDesc_L(@PathVariable(name="scid") Integer scid,
                              Model model){
+        School school = schoolMapper.findByScid(scid);
         List<ScoreDTO> scoreList = scoreService.findByScidL(scid);
         List<Score> scoresList = scoreMapper.list();
         List<ScoreDTO> scoreListW = scoreService.findByScidW(scid);
@@ -55,6 +56,7 @@ public class SchoolDescController {
         List<Score2017> scores2017ListW = score2017Mapper.list();
         List<Profession> professionList = professionMapper.findProByScid(scid);
         List<Profession> professionsList = professionMapper.list();
+        model.addAttribute("schools",school);
         model.addAttribute("scores",scoresList);
         model.addAttribute("score",scoreList);
         model.addAttribute("scoresW",scoresListW);

@@ -16,7 +16,12 @@
                     <li><a href="#">资讯</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/profile">我的</a></li>
+                    <li th:if="${session.loginUser != null}">
+                        <a href="#" th:text="${session.loginUser}"></a>
+                    </li>
+                    <li th:if="${session.loginUser == null}">
+                        <a href="/front/login">登录</a>
+                    </li>
                 </ul>
             </div>
         </div>
