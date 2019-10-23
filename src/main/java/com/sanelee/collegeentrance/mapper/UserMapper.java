@@ -1,10 +1,23 @@
 package com.sanelee.collegeentrance.mapper;
 
 import com.sanelee.collegeentrance.model.User;
-import org.springframework.data.repository.CrudRepository;
+import org.apache.ibatis.annotations.*;
 
-public interface UserMapper extends CrudRepository<User,Long> {
-    public User findByUsernameAndPassword(String username,String password);
+@Mapper
+public interface UserMapper{
 
-    public User findByUsername(String username);
+    @Insert("insert into user (username,password) values(#{username},#{password})")
+    void save(User user);
+
+    @Select("select * from user where username = #{username} and password = #{password}")
+    User findByUsernameAndPassword(@Param("username") String username,@Param("password") String password);
+
+    @Select("select * from user where username = #{username}")
+    User findByUsername(@Param("username") String username);
+
+    @Select("select * from user where token = #{token}")
+    User findByToken(@Param("token") String token);
+
+    @Update("update user set token = #{token} where username = #{username}")
+    void update(User user);
 }

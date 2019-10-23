@@ -9,10 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import java.util.Map;
+import java.util.UUID;
 
 import static com.sanelee.collegeentrance.model.User.*;
 
@@ -23,7 +26,18 @@ public class IndexController {
     private UserMapper userMapper;
 
     @GetMapping("/")
-    public String index(){
+    public String index( HttpServletRequest request){
+//        Cookie[] cookies = request.getCookies();
+//        for (Cookie cookie : cookies) {
+//            if (cookie.getName().equals("token")){
+//                String token = cookie.getValue();
+//                User user = userMapper.findByToken(token);
+//                if (user != null){
+//                    request.getSession().setAttribute("user",user);
+//                }
+//                break;
+//            }
+//        }
         return "index";
     }
     //注册页面
@@ -34,7 +48,8 @@ public class IndexController {
 
     //登录页面
     @RequestMapping("/login")
-    public String login(){
+    public String login(HttpServletRequest request){
+
         return "login";
     }
 
@@ -59,21 +74,33 @@ public class IndexController {
     }
     //登录方法
     @RequestMapping("/addlogin")
-    public String login(HttpServletRequest request, Map<String,Object> map,ModelAndView mv,Model model){
+    public String login(HttpServletRequest request,
+                        HttpServletResponse response,
+                        Map<String,Object> map,
+                        ModelAndView mv,
+                        Model model){
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         HttpSession session = request.getSession();
         User user = userMapper.findByUsernameAndPassword(username,password);
-        String str = "";
         if (user !=null){
+            String token = UUID.randomUUID().toString();
+            user.setToken(token);
+            userMapper.update(user);
+            response.addCookie(new Cookie("token",token));
             session.setAttribute("loginUser",username);
             map.put("msg","登陆成功");
             model.addAttribute("user",username);
-            return "index";
+            return "redirect:/";
         }else {
             map.put("msg","密码或账号错误！");
             return "login";
         }
+    }
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request){
+        request.getSession().removeAttribute("loginUser");
+        return "redirect:/";
     }
 
 }

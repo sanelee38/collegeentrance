@@ -25,6 +25,7 @@ public class WebConfig implements WebMvcConfigurer {
         exclude.add("/");
         exclude.add("/index.html");
         exclude.add("/front/login");
+        exclude.add("/front/logout");
         exclude.add("/front/**");
         exclude.add("/css/**");
         exclude.add("/js/**");
