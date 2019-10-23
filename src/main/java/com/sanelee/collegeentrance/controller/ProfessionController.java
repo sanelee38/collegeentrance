@@ -50,4 +50,5 @@ public class ProfessionController {
         model.addAttribute("searchss",searchs);
         return "professionSearch";
     }
+
 }

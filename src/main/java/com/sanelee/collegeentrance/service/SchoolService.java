@@ -39,5 +39,64 @@ public class SchoolService {
         return searchDTO;
 
     }
+    public SearchDTO selectList(String select){
+        if(StringUtils.isNotBlank(select)){
+            String[] tags = StringUtils.split(select,",");
+            select = Arrays.stream(tags).collect(Collectors.joining("|"));
+        }
+        SearchDTO searchDTO = new SearchDTO();
+        SchoolQueryDTO schoolQueryDTO = new SchoolQueryDTO();
+        schoolQueryDTO.setSelect(select);
+        List<School> schools = schoolMapper.selectBySelect(schoolQueryDTO);
+        List<SchoolDTO> schoolDTOList = new ArrayList<>();
+        for (School school : schools){
+            SchoolDTO schoolDTO = new SchoolDTO();
+            BeanUtils.copyProperties(school,schoolDTO);
+            schoolDTOList.add(schoolDTO);
+        }
+        searchDTO.setSchools(schoolDTOList);
+        return searchDTO;
+    }
 
+    public SearchDTO proSearchList(String proSearch){
+        if (StringUtils.isNotBlank(proSearch)){
+            String[] tags = StringUtils.split(proSearch," ");
+            proSearch = Arrays.stream(tags).collect(Collectors.joining("|"));
+        }
+        SearchDTO searchDTO = new SearchDTO();
+        SchoolQueryDTO schoolQueryDTO = new SchoolQueryDTO();
+        schoolQueryDTO.setProSearch(proSearch);
+        List<School> schools = schoolMapper.selectByProSearch(schoolQueryDTO);
+        List<SchoolDTO> schoolDTOList = new ArrayList<>();
+        for (School school:schools){
+            SchoolDTO schoolDTO = new SchoolDTO();
+            BeanUtils.copyProperties(school,schoolDTO);
+            schoolDTOList.add(schoolDTO);
+        }
+        searchDTO.setSchools(schoolDTOList);
+        return searchDTO;
+    }
+
+    public SearchDTO proSearchsList(String proSearch,String select) {
+        if(StringUtils.isNotBlank(proSearch)){
+            String[] tags = StringUtils.split(proSearch," ");
+            proSearch = Arrays.stream(tags).collect(Collectors.joining("|"));
+            String[] tags2 = StringUtils.split(select,",");
+            select = Arrays.stream(tags2).collect(Collectors.joining("|"));
+        }
+
+        SearchDTO searchDTO = new SearchDTO();
+        SchoolQueryDTO schoolQueryDTO = new SchoolQueryDTO();
+        schoolQueryDTO.setProSearch(proSearch);
+        schoolQueryDTO.setSelect(select);
+        List<School> schools = schoolMapper.selectByProSelect(schoolQueryDTO);
+        List<SchoolDTO> schoolDTOList = new ArrayList<>();
+        for (School school : schools){
+            SchoolDTO schoolDTO = new SchoolDTO();
+            BeanUtils.copyProperties(school,schoolDTO);
+            schoolDTOList.add(schoolDTO);
+        }
+        searchDTO.setSchools(schoolDTOList);
+        return searchDTO;
+    }
 }

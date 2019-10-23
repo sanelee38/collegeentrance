@@ -4,13 +4,41 @@
     <title>院校大全</title>
     <meta name="viewport" http-equiv="Content-Type" content="text/html; charset=UTF-8;width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/docs/css/bootstrap-example.min.css" type="text/css">
+    <link rel="stylesheet" href="/docs/css/prettify.min.css" type="text/css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="/css/college.css">
+    <link rel="stylesheet" href="/css/bootstrap-select.min.css">
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="/docs/js/prettify.min.js"></script>
+    <link rel="stylesheet" href="/dist/css/bootstrap-multiselect.css" type="text/css">
+    <script type="text/javascript" src="/dist/js/bootstrap-multiselect.js"></script>
     <script src="/js/moment.js" type="application/javascript"></script>
+    <script src="/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            window.prettyPrint() && prettyPrint();
+        });
+        // 插件实例
+        $(document).ready(function () {
+            $("#typeId").multiselect();
+            // 点击事件获取所有选中option的value值
+            $("#btn").click(function () {
+                var selectValueStr = [];
+                $("#typeId option:selected").each(function () {
+                    selectValueStr.push($(this).val());
+                })
+                console.log(selectValueStr)
+            })
+        });
+        $(window).on('load', function () {
+            $('.selectpicker').selectpicker({
+                'selectedText': 'cat'
+            });
+            // $('.selectpicker').selectpicker('hide');  
+        });
+    </script>
 </head>
 <body class="diamond">
 <div th:fragment="nav">
@@ -26,43 +54,25 @@
                 <a class="navbar-brand" href="/school">院校大全</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <select name="status" id="tabs" class="selectpicker show-tick form-control select" data-live-search="true">
-                            <option>陕西</option>
-                            <option>北京</option>
-                            <option>云南</option>
-                            <option>重庆</option>
-                            <option>河北</option>
-                            <option>黑龙江</option>
-                            <option>湖南</option>
-                        </select>
-<!--                        <select name="status" id="tabs" >-->
-<!--                            <option>所在区域</option>-->
-<!--                            <option>陕西</option>-->
-<!--                            <option>北京</option>-->
-<!--                            <option>云南</option>-->
-<!--                            <option>重庆</option>-->
-<!--                            <option>河北</option>-->
-<!--                            <option>黑龙江</option>-->
-<!--                            <option>湖南</option>-->
-<!--                        </select>-->
-                    <!--                    <li class="dropdown">-->
-                    <!--                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">批次 <span class="caret"></span></a>-->
-                    <!--                        <ul class="dropdown-menu">-->
-                    <!--                            <li><a href="#">一批本科</a></li>-->
-                    <!--                            <li><a href="#">二批本科</a></li>-->
-                    <!--                            <li><a href="#">专科</a></li>-->
-                    <!--                        </ul>-->
-                        <!--                </li>-->
-                    </li>
-                </ul>
+                <form class="navbar-form navbar-nav" action="/schoolSearch">
+                        <select class="selectpicker" name="select" multiple  data-actions-box="true">
+                            <option  th:each="area:${areas}" th:value="${area.name}" th:text="${area.name}" th:selected="${area.name=='陕西'}"></option>
+                        </select>
+                    <button type="submit" class="btn btn-default">查询</button>
+                </form>
                 <form class="navbar-form navbar-right" action="/schoolSearch" method="get">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="search" placeholder="搜索大学">
+                        <input type="text" class="form-control" name="search" value=" ">
                     </div>
-                    <button type="submit" class="btn btn-default">搜索</button>
+                    <button type="submit" class="btn btn-default">搜索大学</button>
                 </form>
+<!--                <label for="id_select"></label>-->
+<!--                                <select id="id_select" class="selectpicker bla bla bli" multiple data-live-search="true">-->
+<!--                                    <option>123</option>-->
+<!--                                    <option>456</option>-->
+<!--                                    <option>789</option>-->
+<!--                                    </optgroup>-->
+<!--                                  </select>-->
             </div>
         </div>
     </nav>

@@ -28,6 +28,8 @@ public class WebConfig implements WebMvcConfigurer {
         exclude.add("/front/**");
         exclude.add("/css/**");
         exclude.add("/js/**");
+        exclude.add("/docs/**");
+        exclude.add("/dist/**");
         registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
                 .excludePathPatterns(exclude);
     }

@@ -100,7 +100,7 @@
                                 </thead>
                                 <tbody th:each="professions:${profession}">
                                 <tr >
-                                    <th scope="row" th:href="@{'professionSC/'+${professions.pid}}" th:text="${professions.proname}"></th>
+                                    <td><a scope="row" th:href="@{'/professionSC/'+${professions.pid}}" th:text="${professions.proname}"></a></td>
                                     <td th:text="${professions.maxscore}"></td>
                                     <td th:text="${professions.avgscore}"></td>
                                     <td th:text="${professions.minscore}"></td>
@@ -180,7 +180,7 @@
                                 </thead>
                                 <tbody th:each="professions:${profession}">
                                 <tr>
-                                    <th scope="row" th:href="@{'professionSC/'+${professions.pid}}" th:text="${professions.proname}"></th>
+                                    <td><a scope="row" th:href="@{'/professionSC/'+${professions.pid}}" th:text="${professions.proname}"></a></td>
                                     <td th:text="${professions.maxscore}"></td>
                                     <td th:text="${professions.avgscore}"></td>
                                     <td th:text="${professions.minscore}"></td>

@@ -17,10 +17,12 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li th:if="${session.loginUser != null}">
-                        <a href="#" th:text="${session.loginUser}"></a>
+                        <a href="/profile" th:text="${session.loginUser}"></a>
                     </li>
                     <li th:if="${session.loginUser == null}">
-                        <a href="/front/login">登录</a>
+                        <button  onclick="window.location.href = '/front/login'" type="button" class="btn btn-default navbar-btn" style="margin-right: 20px">
+                            登录
+                        </button>
                     </li>
                 </ul>
             </div>

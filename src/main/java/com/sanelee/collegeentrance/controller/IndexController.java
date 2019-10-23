@@ -44,7 +44,8 @@ public class IndexController {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String password2 = request.getParameter("password2");
-        if (password.equals(password2)){
+        User userIdentify = userMapper.findByUsername(username);
+        if (password.equals(password2)&&userIdentify==null){
             User user = new User();
             user.setUsername(username);
             user.setPassword(password);
@@ -52,7 +53,7 @@ public class IndexController {
             map.put("msg","注册成功,请登录！");
             return "login";
         }else {
-            map.put("msg","格式不正确！");
+            map.put("msg","格式不正确或用户名已存在！");
             return "register";
         }
     }
