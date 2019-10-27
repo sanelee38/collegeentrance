@@ -38,6 +38,15 @@
             });
             // $('.selectpicker').selectpicker('hide');  
         });
+        $(function() {
+            if (localStorage.getItem('ctc3')) {
+                $("#ctc3 option").eq(localStorage.getItem('ctc3')).prop('selected', true);
+            }
+
+            $("#ctc3").on('change', function() {
+                localStorage.setItem('ctc3', $('option:selected', this).index());
+            });
+        });
     </script>
 </head>
 <body class="diamond">
@@ -55,7 +64,7 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <form class="navbar-form navbar-nav" action="/schoolSearch">
-                        <select class="selectpicker" name="select" multiple  data-actions-box="true">
+                        <select class="selectpicker" id="ctc3" name="select" multiple  data-actions-box="true">
                             <option  th:each="area:${areas}" th:value="${area.name}" th:text="${area.name}" th:selected="${area.name=='陕西'}"></option>
                         </select>
                     <button type="submit" class="btn btn-default">查询</button>

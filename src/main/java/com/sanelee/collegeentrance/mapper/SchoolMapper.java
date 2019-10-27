@@ -47,7 +47,7 @@ public interface SchoolMapper {
     @Select("select * from school where areaname regexp #{select}")
     List<School> selectBySelect(SchoolQueryDTO schoolQueryDTO);
 
-    @Select("SELECT distinct s.name,s.scid FROM profession AS p, t_school_profession AS t ,(select * from school where areaname regexp #{select}) AS s WHERE p.pid = t.pid AND s.scid=t.scid AND p.proname REGEXP #{proSearch};")
+    @Select("SELECT distinct s.name,s.scid,s.areaname FROM profession AS p, t_school_profession AS t ,(select * from school where areaname regexp #{select}) AS s WHERE p.pid = t.pid AND s.scid=t.scid AND p.proname REGEXP #{proSearch};")
     List<School> selectByProSelect(SchoolQueryDTO schoolQueryDTO);
 
     @Select("Select * from profession where proname regexp #{proSearch}")

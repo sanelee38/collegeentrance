@@ -10,14 +10,21 @@ import com.sanelee.collegeentrance.model.Profession;
 import com.sanelee.collegeentrance.model.School;
 import com.sanelee.collegeentrance.service.SchoolService;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.hssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableMBeanExport;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 
 @Controller
@@ -89,46 +96,43 @@ public class SchoolController {
         return "schoolSearch";
     }
 
-//
-//    @GetMapping("/school_area_cq")
-//    public String schoolAreaCQ(Model model){
-//        List<School> schoolList = schoolMapper.listCQ();
-//        model.addAttribute("schools",schoolList);
-//        return "school_area_cq";
-//    }
-//
-//    @GetMapping("/school_area_hn")
-//    public String schoolAreaHN(Model model){
-//        List<School> schoolList = schoolMapper.listHN();
-//        model.addAttribute("schools",schoolList);
-//        return "school_area_hn";
-//    }
-//
-//    @GetMapping("/school_area_yn")
-//    public String schoolAreaYN(Model model){
-//        List<School> schoolList = schoolMapper.listYN();
-//        model.addAttribute("schools",schoolList);
-//        return "school_area_yn";
-//    }
-//
-//    @GetMapping("/school_area_sx")
-//    public String schoolAreaSX(Model model){
-//        List<School> schoolList = schoolMapper.listSX();
-//        model.addAttribute("schools",schoolList);
-//        return "school_area_sx";
-//    }
-//
-//    @GetMapping("/school_area_hb")
-//    public String schoolAreaHLJ(Model model){
-//        List<School> schoolList = schoolMapper.listHB();
-//        model.addAttribute("schools",schoolList);
-//        return "school_area_hb";
-//    }
-//
-//    @GetMapping("/school_area_hlj")
-//    public String schoolAreaHB(Model model){
-//        List<School> schoolList = schoolMapper.listHLJ();
-//        model.addAttribute("schools",schoolList);
-//        return "school_area_hlj";
-//    }
+
+    @RequestMapping(value = "SchoolExcelDownloads",method = RequestMethod.GET)
+    public void downloadAllClassmate(HttpServletResponse response,
+                                     @RequestParam(name = "select",required = false) String select,
+                                     @RequestParam(name = "proSearch",required = false) String proSearch) throws IOException{
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet sheet = workbook.createSheet("学校表");
+
+        List<School> schoolList = schoolService.schoolinfor(proSearch,select);
+
+        System.out.println(proSearch);
+
+        String fileName = select +"地区包含"+proSearch+"专业的学校汇总表" + ".xls";
+
+        int rowNum = 1;
+
+        String[] headers = {"学校id","学校名","学校所在地"};
+
+        HSSFRow row = sheet.createRow(0);
+
+        for (int i=0; i<headers.length;i++){
+            HSSFCell cell = row.createCell(i);
+            HSSFRichTextString text = new HSSFRichTextString(headers[i]);
+            cell.setCellValue(text);
+        }
+
+        for (School school:schoolList){
+            HSSFRow row1 = sheet.createRow(rowNum);
+            row1.createCell(0).setCellValue(school.getScid());
+            row1.createCell(1).setCellValue(school.getName());
+            row1.createCell(2).setCellValue(school.getAreaname());
+            rowNum++;
+        }
+        response.setContentType("application/octet-stream");
+        response.setHeader("Content-disposition", "attachment;filename=" + URLEncoder.encode(fileName,"utf-8"));
+        response.flushBuffer();
+        workbook.write(response.getOutputStream());
+    }
+
 }

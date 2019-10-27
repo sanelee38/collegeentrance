@@ -32,6 +32,33 @@
                 console.log(selectValueStr)
             })
         });
+        $(function() {
+            if (localStorage.getItem('ctc')) {
+                $("#ctc option").eq(localStorage.getItem('ctc')).prop('selected', true);
+            }
+
+            $("#ctc").on('change', function() {
+                localStorage.setItem('ctc', $('option:selected', this).index());
+            });
+        });
+        $(function() {
+            if (localStorage.getItem('ctc2')) {
+                $("#ctc2 option").eq(localStorage.getItem('ctc2')).prop('selected', true);
+            }
+
+            $("#ctc2").on('change', function() {
+                localStorage.setItem('ctc2', $('option:selected', this).index());
+            });
+        });
+        function downloadFile(){
+            document.demo.action="/SchoolExcelDownloads";
+            document.demo.submit();
+        }
+
+        function search() {
+            document.demo.action="/schoolSearch";
+            document.demo.submit();
+        }
     </script>
 </head>
 <body>
@@ -42,17 +69,17 @@
                 <a class="navbar-brand" href="/school">院校大全</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <form class="navbar-form navbar-nav" action="/schoolSearch">
-                        <select class="selectpicker" name="select" multiple  data-actions-box="true">
-                        <option  th:each="area:${areas}" th:value="${area.name}" th:text="${area.name}"></option>
+                <form name="demo" class="navbar-form navbar-nav">
+                        <select class="selectpicker" id="ctc" name="select" multiple  data-actions-box="true">
+                            <option  th:each="area:${areas}" th:value="${area.name}" th:text="${area.name}"></option>
                         </select>
                     <div class="form-group" >
-                        <select class="selectpicker" name="proSearch" multiple data-live-search="true">
+                        <select class="selectpicker" id="ctc2" name="proSearch" multiple data-live-search="true" data-actions-box="true">
                             <option th:each="profession:${professions}" th:value="${profession.proname}" th:text="${profession.proname}"></option>
                         </select>
-<!--                        <input type="text" class="form-control" name="proSearch" value="">-->
                     </div>
-                    <button id="btn" type="submit" class="btn btn-default">搜索开设该专业的高校</button>
+                    <button id="btn" type="submit" class="btn btn-default" onclick="search()">搜索开设该专业的高校</button>
+                    <button class="btn btn-default" onclick="downloadFile();">学校数据导出</button>
                 </form>
                 <form class="navbar-form navbar-right" action="/schoolSearch" method="get">
                     <div class="form-group">
@@ -103,7 +130,6 @@
         </ul>
     </div>
 </div>
-
 <div th:insert="~{navigation :: nav}"></div>
 </body>
 </html>

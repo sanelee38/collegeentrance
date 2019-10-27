@@ -99,4 +99,17 @@ public class SchoolService {
         searchDTO.setSchools(schoolDTOList);
         return searchDTO;
     }
+
+    public List<School> schoolinfor(String proSearch,String select){
+        if(StringUtils.isNotBlank(proSearch)){
+            String[] tags = StringUtils.split(proSearch," ");
+            proSearch = Arrays.stream(tags).collect(Collectors.joining("|"));
+            String[] tags2 = StringUtils.split(select,",");
+            select = Arrays.stream(tags2).collect(Collectors.joining("|"));
+        }
+        SchoolQueryDTO schoolQueryDTO = new SchoolQueryDTO();
+        schoolQueryDTO.setProSearch(proSearch);
+        schoolQueryDTO.setSelect(select);
+        return schoolMapper.selectByProSelect(schoolQueryDTO);
+    }
 }
