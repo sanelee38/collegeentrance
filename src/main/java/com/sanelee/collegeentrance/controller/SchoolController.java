@@ -1,6 +1,7 @@
 package com.sanelee.collegeentrance.controller;
 
 
+import com.sanelee.collegeentrance.dto.SchoolDTO;
 import com.sanelee.collegeentrance.dto.SearchDTO;
 import com.sanelee.collegeentrance.mapper.AreaMapper;
 import com.sanelee.collegeentrance.mapper.ProfessionMapper;
@@ -99,12 +100,14 @@ public class SchoolController {
 
     @RequestMapping(value = "SchoolExcelDownloads",method = RequestMethod.GET)
     public void downloadAllClassmate(HttpServletResponse response,
+                                     Model model,
                                      @RequestParam(name = "select",required = false) String select,
                                      @RequestParam(name = "proSearch",required = false) String proSearch) throws IOException{
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet("学校表");
 
-        List<School> schoolList = schoolService.schoolinfor(proSearch,select);
+        List<SchoolDTO> schoolDTOList = schoolService.schoolinfor(proSearch,select);
+        model.addAttribute("printer",schoolDTOList);
 
         System.out.println(proSearch);
 
@@ -112,7 +115,7 @@ public class SchoolController {
 
         int rowNum = 1;
 
-        String[] headers = {"学校id","学校名","学校所在地"};
+        String[] headers = {"学校id","学校名","学校所在地","专业","最高分","平均分","最低分","最低位次"};
 
         HSSFRow row = sheet.createRow(0);
 
@@ -122,11 +125,16 @@ public class SchoolController {
             cell.setCellValue(text);
         }
 
-        for (School school:schoolList){
+        for (SchoolDTO schoolDTO:schoolDTOList){
             HSSFRow row1 = sheet.createRow(rowNum);
-            row1.createCell(0).setCellValue(school.getScid());
-            row1.createCell(1).setCellValue(school.getName());
-            row1.createCell(2).setCellValue(school.getAreaname());
+            row1.createCell(0).setCellValue(schoolDTO.getScid());
+            row1.createCell(1).setCellValue(schoolDTO.getName());
+            row1.createCell(2).setCellValue(schoolDTO.getAreaname());
+            row1.createCell(3).setCellValue(schoolDTO.getProname());
+            row1.createCell(4).setCellValue(schoolDTO.getMaxscore());
+            row1.createCell(5).setCellValue(schoolDTO.getAvgscore());
+            row1.createCell(6).setCellValue(schoolDTO.getMinscore());
+            row1.createCell(7).setCellValue(schoolDTO.getMinrank());
             rowNum++;
         }
         response.setContentType("application/octet-stream");

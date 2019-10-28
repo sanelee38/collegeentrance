@@ -1,5 +1,6 @@
 package com.sanelee.collegeentrance.mapper;
 
+import com.sanelee.collegeentrance.dto.SchoolDTO;
 import com.sanelee.collegeentrance.dto.SchoolQueryDTO;
 import com.sanelee.collegeentrance.model.School;
 import org.apache.ibatis.annotations.*;
@@ -47,8 +48,11 @@ public interface SchoolMapper {
     @Select("select * from school where areaname regexp #{select}")
     List<School> selectBySelect(SchoolQueryDTO schoolQueryDTO);
 
-    @Select("SELECT distinct s.name,s.scid,s.areaname FROM profession AS p, t_school_profession AS t ,(select * from school where areaname regexp #{select}) AS s WHERE p.pid = t.pid AND s.scid=t.scid AND p.proname REGEXP #{proSearch};")
+    @Select("SELECT DISTINCT s.name,s.scid,s.areaname,t.`pid`,t.`maxscore`,t.`avgscore`,t.`minscore`,t.`minrank`,p.`proname` FROM profession AS p, t_school_profession AS t ,(select * from school where areaname regexp #{select}) AS s WHERE p.pid = t.pid AND s.scid=t.scid AND p.proname REGEXP #{proSearch};")
     List<School> selectByProSelect(SchoolQueryDTO schoolQueryDTO);
+
+    @Select("SELECT DISTINCT s.name,s.scid,s.areaname,t.`pid`,t.`maxscore`,t.`avgscore`,t.`minscore`,t.`minrank`,p.`proname` FROM profession AS p, t_school_profession AS t ,(select * from school where areaname regexp #{select}) AS s WHERE p.pid = t.pid AND s.scid=t.scid AND p.proname REGEXP #{proSearch};")
+    List<SchoolDTO> selectByPrinter(SchoolQueryDTO schoolQueryDTO);
 
     @Select("Select * from profession where proname regexp #{proSearch}")
     List<School> selectByProSearch(SchoolQueryDTO schoolQueryDTO);

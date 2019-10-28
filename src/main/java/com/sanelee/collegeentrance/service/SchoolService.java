@@ -6,6 +6,7 @@ import com.sanelee.collegeentrance.dto.SearchDTO;
 import com.sanelee.collegeentrance.mapper.SchoolMapper;
 import com.sanelee.collegeentrance.model.School;
 import org.apache.commons.lang3.StringUtils;
+import org.omg.PortableServer.LIFESPAN_POLICY_ID;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -100,7 +101,7 @@ public class SchoolService {
         return searchDTO;
     }
 
-    public List<School> schoolinfor(String proSearch,String select){
+    public List<SchoolDTO> schoolinfor(String proSearch,String select){
         if(StringUtils.isNotBlank(proSearch)){
             String[] tags = StringUtils.split(proSearch," ");
             proSearch = Arrays.stream(tags).collect(Collectors.joining("|"));
@@ -110,6 +111,7 @@ public class SchoolService {
         SchoolQueryDTO schoolQueryDTO = new SchoolQueryDTO();
         schoolQueryDTO.setProSearch(proSearch);
         schoolQueryDTO.setSelect(select);
-        return schoolMapper.selectByProSelect(schoolQueryDTO);
+        List<SchoolDTO> schoolDTOList = schoolMapper.selectByPrinter(schoolQueryDTO);
+        return schoolDTOList;
     }
 }
