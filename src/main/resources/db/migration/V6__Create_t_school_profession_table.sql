@@ -1,11 +1,12 @@
 create table t_school_profession
 (
-    scid     int default 0 not null,
-    maxscore int           null,
-    avgscore int           null,
-    minscore int           null,
-    minrank  int           null,
-    pid      int default 0 not null,
+    forecastscore int           null,
+    minrank       int           null,
+    minscore      int           null,
+    avgscore      int           null,
+    maxscore      int           null,
+    scid          int default 0 not null,
+    pid           int default 0 not null,
     primary key (scid, pid),
     constraint t_school_profession_ibfk_1
         foreign key (scid) references school (scid),
