@@ -1,3 +1,8 @@
+.contentDiv{
+    position:absolute;
+    top:70px;
+    bottom: 150px;
+}
 
 .menu .score-icon{
     font-size: 60px;

@@ -63,7 +63,7 @@
 </head>
 <body>
 <div th:fragment="nav">
-    <nav class="navbar navbar-default" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="/school">院校大全</a>
@@ -91,43 +91,45 @@
         </div>
     </nav>
 </div>
-<div>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <ul class="list-group" th:each="searchs:${searchss.schools}">
-            <li class="media">
-                <a th:href="@{'school_desc_l/'+${searchs.scid}}" style="text-decoration: none;">
-                    <div class="media-body">
-                        <h4 class="media-heading" th:text="${searchs.name}"></h4>
-                    </div>
-                </a>
-            </li>
-        </ul>
+<div class="contentDiv">
+    <div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ul class="list-group" th:each="searchs:${searchss.schools}">
+                <li class="media">
+                    <a th:href="@{'school_desc_l/'+${searchs.scid}}" style="text-decoration: none;">
+                        <div class="media-body">
+                            <h4 class="media-heading" th:text="${searchs.name}"></h4>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-</div>
-<div>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <ul class="list-group" th:each="proSearchs:${proSearchss.schools}">
-            <li class="media">
-                <a th:href="@{'school_desc_l/'+${proSearchs.scid}}" style="text-decoration: none;">
-                    <div class="media-body">
-                        <h4 class="media-heading" th:text="${proSearchs.name}"></h4>
-                    </div>
-                </a>
-            </li>
-        </ul>
+    <div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ul class="list-group" th:each="proSearchs:${proSearchss.schools}">
+                <li class="media">
+                    <a th:href="@{'school_desc_l/'+${proSearchs.scid}}" style="text-decoration: none;">
+                        <div class="media-body">
+                            <h4 class="media-heading" th:text="${proSearchs.name}"></h4>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-</div>
-<div>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <ul class="list-group" th:each="selects:${selectss.schools}">
-            <li class="media">
-                <a th:href="@{'school_desc_l/'+${selects.scid}}" style="text-decoration: none;">
-                    <div class="media-body">
-                        <h4 class="media-heading" th:text="${selects.name}"></h4>
-                    </div>
-                </a>
-            </li>
-        </ul>
+    <div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ul class="list-group" th:each="selects:${selectss.schools}">
+                <li class="media">
+                    <a th:href="@{'school_desc_l/'+${selects.scid}}" style="text-decoration: none;">
+                        <div class="media-body">
+                            <h4 class="media-heading" th:text="${selects.name}"></h4>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 <div th:insert="~{navigation :: nav}"></div>
