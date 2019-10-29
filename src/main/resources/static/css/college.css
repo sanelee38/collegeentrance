@@ -1,7 +1,8 @@
+
 .contentDiv{
     position:absolute;
     top:70px;
-    bottom: 150px;
+    margin-bottom:70px;
 }
 
 .menu .score-icon{

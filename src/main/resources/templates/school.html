@@ -86,9 +86,9 @@
         </div>
     </nav>
 </div>
-<div class="contentDiv" id="content">
+<div  id="content">
     <div id ="chanpin0" >
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="contentDiv col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <ul class="list-group" th:each="school:${schoolsSx}">
                 <li class="media" >
                     <a th:href="@{'school_desc_l/'+${school.scid}}" style="text-decoration: none;">
@@ -214,6 +214,6 @@
         });
     });
 </script>
-<div th:insert="~{navigation :: nav}" class="navbar-fixed-bottom"></div>
+<div th:insert="~{navigation :: nav}" ></div>
 </body>
 </html>
