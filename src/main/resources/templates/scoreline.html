@@ -9,234 +9,137 @@
     <link rel="stylesheet" href="/css/college.css">
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+    <style>
+        body{ text-align:center}
+        #tableAround{margin:0 auto}
+    </style>
 </head>
 <body>
 <div th:fragment="nav">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/school">历年陕西高考分数线</a>
+                <a class="navbar-brand" href="/#">陕西省历年高考分数线</a>
             </div>
         </div>
     </nav>
 </div>
-<div style="margin-left: 60px; margin-top: 40px;" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <h3 class="blue ft14 txtC">文 科</h3>
-    <table class="table">
-        <tr class="wkTit">
-            <th width="134"></th>
-            <th width="72">2019</th>
-            <th width="72">2018</th>
-            <th width="72">2017</th>
-            <th width="72">2016</th>
-            <th width="72">2015</th>
-            <th width="72">2014</th>
-            <th width="72">2013</th>
-            <th width="72">2012</th>
-            <th width="72">2011</th>
-            <th width="72">2010</th>
-            <th width="72">2009</th>
-        </tr>
-        <tr class="c_blue">
-            <td class="first">一本</td>
-            <td>518</td>
-            <td>518</td>
-            <td>509</td>
-            <td>511</td>
-            <td>-</td>
-            <td>548</td>
-            <td>
-                540
-            </td>
-            <td>
-                556
-            </td>
-            <td>
-                543
-            </td>
-            <td>
-                559
-            </td>
-            <td>
-                540
-            </td>
+<div class="tableAround col-md-9" id="tableAround" style="margin-left: 180px">
+    <div class="panel-heading">
+        <span>理科</span>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>批次</th>
+                    <td>2019</td>
+                    <td>2018</td>
+                    <td>2017</td>
+                    <td>2016</td>
+                    <td>2015</td>
+                    <td>2014</td>
+                    <td>2013</td>
+                    <td>2012</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">一本</th>
+                    <td>469</td>
+                    <td>474</td>
+                    <td>449</td>
+                    <td>470</td>
+                    <td>480</td>
+                    <td>503</td>
+                    <td>485</td>
+                    <td>517</td>
+                </tr>
+                <tr>
+                    <th scope="row">二本</th>
+                    <td>363</td>
+                    <td>425</td>
+                    <td>397</td>
+                    <td>423</td>
+                    <td>440</td>
+                    <td>452</td>
+                    <td>435</td>
+                    <td>461</td>
+                </tr>
+                <tr>
+                    <th scope="row">三本</th>
+                    <td> </td>
+                    <td>332</td>
+                    <td>301</td>
+                    <td>344</td>
+                    <td>350</td>
+                    <td>342</td>
+                    <td>330</td>
+                    <td>331</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-        </tr>
-        <tr class="c_white">
-            <td class="first">二本</td>
-            <td>400</td>
-            <td>467</td>
-            <td>457</td>
-            <td>460</td>
-            <td>-</td>
-            <td>492</td>
-            <td>
-                486
-            </td>
-            <td>
-                497
-            </td>
-            <td>
-                495
-            </td>
-            <td>
-                500
-            </td>
-            <td>
-                495
-            </td>
+    <div class="panel-heading">
+        <span>文科</span>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>批次</th>
+                <td>2019</td>
+                <td>2018</td>
+                <td>2017</td>
+                <td>2016</td>
+                <td>2015</td>
+                <td>2014</td>
+                <td>2013</td>
+                <td>2012</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">一本</th>
+                <td>518</td>
+                <td>518</td>
+                <td>509</td>
+                <td>511</td>
+                <td>510</td>
+                <td>548</td>
+                <td>540</td>
+                <td>556</td>
+            </tr>
+            <tr>
+                <th scope="row">二本</th>
+                <td>400</td>
+                <td>467</td>
+                <td>457</td>
+                <td>460</td>
+                <td>467</td>
+                <td>492</td>
+                <td>486</td>
+                <td>497</td>
+            </tr>
+            <tr>
+                <th scope="row">三本</th>
+                <td> </td>
+                <td>345</td>
+                <td>334</td>
+                <td>381</td>
+                <td>382</td>
+                <td>387</td>
+                <td>386</td>
+                <td>377</td>
+            </tr>
+            </tbody>
 
-        </tr>
-        <tr class="c_blue">
-            <td class="first">三本</td>
-            <td>-</td>
-            <td>345</td>
-            <td>334</td>
-            <td>381</td>
-            <td>-</td>
-            <td>387</td>
-            <td>386</td>
-            <td>377</td>
-            <td>395</td>
-            <td>400</td>
-            <td>440</td>
+        </table>
 
-        </tr>
-        <tr class="c_white">
-            <td class="first">专职</td>
-            <td>150</td>
-            <td>160</td>
-            <td>150</td>
-            <td>225</td>
-            <td>-</td>
-            <td>273</td>
-            <td>
-                200
-            </td>
-            <td>
-                240
-            </td>
-            <td>
-                -
-            </td>
-            <td>
-                330
-            </td>
-            <td>
-                310
-            </td>
+    </div>
 
-
-        </tr>
-    </table>
-    <h3 class="blue ft14 txtC lkTit">理 科</h3>
-    <table class="table">
-        <tr class="wkTit">
-            <th width="134"></th>
-            <th width="72">2019</th>
-            <th width="72">2018</th>
-            <th width="72">2017</th>
-            <th width="72">2016</th>
-            <th width="72">2015</th>
-            <th width="72">2014</th>
-            <th width="72">2013</th>
-
-            <th width="72">2012</th>
-            <th width="72">2011</th>
-            <th width="72">2010</th>
-            <th width="72">2009</th>
-
-
-        </tr>
-        <tr class="c_blue">
-            <td class="first">一本</td>
-            <td>469</td>
-            <td>474</td>
-            <td>449</td>
-            <td>470</td>
-            <td>-</td>
-            <td>503</td>
-            <td>485</td>
-            <td>517</td>
-            <td>540</td>
-            <td>556</td>
-            <td>537</td>
-
-        </tr>
-        <tr class="c_white">
-            <td class="first">二本</td>
-            <td>363</td>
-            <td>425</td>
-            <td>397</td>
-            <td>423</td>
-            <td>-</td>
-            <td>452</td>
-            <td>435</td>
-            <td>461</td>
-            <td>488</td>
-            <td>500</td>
-            <td>495</td>
-
-
-        </tr>
-        <tr class="c_blue">
-            <td class="first">三本</td>
-            <td>-</td>
-            <td>332</td>
-            <td>301</td>
-            <td>344</td>
-
-            <td>-</td>
-            <td>342</td>
-            <td>
-                330
-            </td>
-            <td>
-                331
-            </td>
-            <td>
-                368
-            </td>
-            <td>
-                400
-            </td>
-            <td>
-                430
-            </td>
-
-        </tr>
-        <tr class="c_white">
-            <td class="first">专职</td>
-            <td>150</td>
-            <td>160</td>
-            <td>150</td>
-            <td>200</td>
-
-            <td>-</td>
-            <td>256</td>
-            <td>
-                150
-            </td>
-            <td>
-                200
-            </td>
-            <td>
-                -
-            </td>
-            <td>
-                310
-            </td>
-            <td>
-                300
-            </td>
-
-
-        </tr>
-    </table>
-    </table>
 </div>
-</div>
-
 <div th:insert="~{navigation :: nav}"></div>
 </body>
 </html>

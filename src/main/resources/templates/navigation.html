@@ -17,7 +17,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li th:if="${session.loginUser != null}" class="dropup">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                        <a href="/profile" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">
                             <span  th:text="${session.loginUser}"></span>
                             <span class="caret"></span>

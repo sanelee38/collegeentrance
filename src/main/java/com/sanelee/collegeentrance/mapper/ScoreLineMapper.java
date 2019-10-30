@@ -10,4 +10,8 @@ import java.util.List;
 public interface ScoreLineMapper {
     @Select("select * from scoreline")
     List<ScoreLine> list();
+    @Select("select * from scoreline where sort = 1")
+    List<ScoreLine> listL();
+    @Select("select * from scoreline where sort = 2")
+    List<ScoreLine> listW();
 }
