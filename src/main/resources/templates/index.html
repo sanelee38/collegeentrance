@@ -10,14 +10,50 @@
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
 </head>
 <body>
-<div>
+<div th:fragment="nav">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">高考志愿填报助手</span>
+                </button>
+                <a class="navbar-brand" href="/">孙教授课堂</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">视频课堂</a></li>
+                    <li><a href="#">资讯</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li th:if="${session.loginUser != null}" class="dropup">
+                        <a href="/profile" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            <span  th:text="${session.loginUser}"></span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/front/logout">退出登录</a></li>
+                        </ul>
+                    </li>
+                    <li th:if="${session.loginUser == null}">
+                        <button  onclick="window.location.href = '/front/login'" type="button" class="btn btn-default navbar-btn" style="margin-right: 20px">
+                            登录
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+</div>
+<div style="margin-top: 50px">
     <div class="container-fluid main">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="jumbotron">
-                    <h1>高考志愿填报助手</h1>
-                    <p>高考，人生的第一关</p>
-                    <p><a class="btn btn-primary btn-lg" href="#" role="button">更多</a></p>
+                    <h1>孙教授讲专业</h1>
+                    <p>讲专业，我们更专业</p>
+<!--                    <p><a class="btn btn-primary btn-lg" href="#" role="button">更多</a></p>-->
                 </div>
             </div>
         </div>
@@ -52,6 +88,6 @@
         </div>
     </div>
 </div>
-<div th:insert="~{navigation :: nav}"></div>
+
 </body>
 </html>
