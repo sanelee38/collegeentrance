@@ -1,48 +1,37 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
     <title>登录</title>
-    <meta name="viewport" http-equiv="Content-Type" content="text/html;charset=UTF-8;width=device-width;initial-scale=1" />
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/ie10-viewport-bug-workaround.css">
+    <link rel="stylesheet" href="/css/signin.css" >
     <link rel="stylesheet" href="/css/college.css">
-    <link rel="stylesheet" href="/css/form-elements.css">
-    <script src="/js/jquery-3.4.1.min.js"></script>
-    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
-
+    <script src="/js/ie-emulation-modes-warning.js"></script>
 
 </head>
 <body>
 <div class="container">
-    <div class="row">
-        <div class="col-sm-6 col-sm-offset-3 form-box">
-            <div class="form-top">
-                <div class="form-top-left">
-                    <h3 th:text="${name}"></h3>
-                    <h5>输入你的用户名和密码进行登录：</h5>
-                </div>
-            </div>
-            <div class="form-bottom ">
-                <form action="/front/addlogin" name="loginfrom" role="form" method="post" class="login-form" accept-charset="utf-8">
-
-                    <div class="form-group">
-                        <label class="sr-only" for="u">用户名</label>
-                        <input type="text" name="username" placeholder="用户名..." value="lizhi" class="form-username form-control" id="u">
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="password">密码：</label>
-                        <input type="password" name="password" placeholder="密码..." value="bmw888bmw" class="form-password form-control" id="password">
-                    </div>
-                    <div style="text-align:center;vertical-align:middle;width: 100%">
-                        <button type="submit" class="btn">登录</button>
-                        <p th:text="${msg}"></p>
-                        <a href="/front/register" class="zcxy" target="_blank">注册</a>
-                    </div>
-                </form>
-            </div>
+    <form action="/front/addlogin" name="loginfrom" role="form" method="post" class="form-signin" accept-charset="utf-8">
+        <h5 class="form-signin-heading">输入你的用户名和密码进行登录：</h5>
+        <label class="sr-only" for="username">用户名</label>
+        <input type="text" name="username" placeholder="用户名..." value="lizhi" class=" form-control" id="username" required autofocus>
+        <label class="sr-only" for="password">密码</label>
+        <input type="password" name="password" placeholder="密码..." value="bmw888bmw" class="form-control" id="password" required>
+        <div style="text-align:center;vertical-align:middle;width: 100%">
+            <button type="submit" class="btn btn-lg btn-primary btn-block">登录</button>
+            <p th:text="${msg}"></p>
+<!--            <a href="/front/register" class="zcxy" target="_blank">注册</a>-->
+<!--            <button type="button" class="btn btn-lg btn-primary btn-block" onClick="location.href('/front/register');">注册</button>-->
+            <input type="button" value="注册" class="btn btn-lg btn-primary btn-block" onClick="location.href='/front/register'"/>
         </div>
-    </div>
+    </form>
+
+
 </div>
 <!--<form action="/front/addlogin" name="loginfrom" accept-charset="utf-8" method="post">-->
 <!--    <p th:text="${name}"></p>-->
@@ -58,5 +47,6 @@
 <!--    <a href="register" class="zcxy" target="_blank">注册</a>-->
 <!--</form>-->
 <div th:insert="~{navigation :: nav}"></div>
+<script src="/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>

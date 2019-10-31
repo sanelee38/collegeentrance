@@ -74,7 +74,7 @@
                             <option  th:each="area:${areas}" th:value="${area.name}" th:text="${area.name}"></option>
                         </select>
                     <div class="form-group" >
-                        <select class="selectpicker" id="ctc2" name="proSearch" multiple data-live-search="true" data-actions-box="true">
+                        <select class="selectpicker" id="ctc2" name="proSearch" multiple data-live-search="true" data-actions-box="true" data-max-options="3">
                             <option th:each="profession:${professions}" th:value="${profession.proname}" th:text="${profession.proname}"></option>
                         </select>
                     </div>
