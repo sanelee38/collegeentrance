@@ -25,7 +25,7 @@
                     <li><a href="#">资讯</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li th:if="${session.loginUser != null}" class="dropup">
+                    <li th:if="${session.loginUser != null}" class="dropdown">
                         <a href="/profile" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">
                             <span  th:text="${session.loginUser}"></span>

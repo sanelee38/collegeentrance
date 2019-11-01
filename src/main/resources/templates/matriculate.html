@@ -16,7 +16,42 @@
     </style>
 </head>
 <body>
-<div class="page-header">
+<div th:fragment="nav">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/profession">录取概率计算</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/">首页</a></li>
+                    <li th:if="${session.loginUser != null}" class="dropup">
+                        <a href="/profile" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            <span  th:text="${session.loginUser}"></span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/front/logout">退出登录</a></li>
+                        </ul>
+                    </li>
+                    <li th:if="${session.loginUser == null}">
+                        <button  onclick="window.location.href = '/front/login'" type="button" class="btn btn-default navbar-btn" style="margin-right: 20px">
+                            登录
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="page-header" style="margin-top: 70px">
     <h1 style="margin-left: 100px">选择报考的学校并输入你的高考成绩<small style="margin-left: 75px">即可获取你的录取概率</small></h1>
 </div>
 <center>
@@ -45,6 +80,6 @@
     <p th:utext="${answer}"></p>
 
 </center>
-<div th:insert="~{navigation :: nav}"></div>
+<!--<div th:insert="~{navigation :: nav}"></div>-->
 </body>
 </html>
