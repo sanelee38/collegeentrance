@@ -12,6 +12,7 @@ public class ProfessionDTO {
     private String proname;
     private String object;
     private School scid;
+    private String pfdescription;
 //    private T_School_Profession maxscore;
 //    private T_School_Profession avgscore;
 //    private T_School_Profession minscore;

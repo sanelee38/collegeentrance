@@ -102,6 +102,7 @@ public class ProfessionService {
             Profession profession = new Profession();
             String proname = null;
             String object = null;
+            String pfdescription = null;
 
             XSSFRow xssfRow = xssfSheet.getRow(line);
             if (null == xssfRow) {
@@ -113,16 +114,34 @@ public class ProfessionService {
 
             XSSFCell pronameCell = null;
             pronameCell = xssfRow.getCell(0);
-            proname =  pronameCell.getStringCellValue();
+            if (pronameCell != null) {
+                proname = pronameCell.getStringCellValue();
+            }else if (pronameCell == null){
+                proname = "暂无";
+            }
             XSSFCell objectCell = null;
             objectCell = xssfRow.getCell(1);
-            object = objectCell.getStringCellValue();
+            if (objectCell != null){
+                object = objectCell.getStringCellValue();
+            }else if (objectCell == null){
+                object = "暂无";
+            }
+
+            XSSFCell pfdescriptionCell = null;
+            pfdescriptionCell = xssfRow.getCell(2);
+            if (pfdescriptionCell != null) {
+                pfdescription = pfdescriptionCell.getStringCellValue();
+            }else if (pfdescriptionCell == null){
+                pfdescription = "暂无";
+            }
 
 
                 profession.setProname(proname);
                 profession.setObject(object);
+                profession.setPfdescription(pfdescription);
                 professionList.add(profession);
-            }
+
+        }
 
         for (Profession professionInfo : professionList) {
             String proname = professionInfo.getProname();

@@ -25,9 +25,9 @@ public interface ProfessionMapper {
     @Select("select count(*) from profession where proname=#{proname}")
     int selectProfession(String proname);
 
-    @Insert("insert into profession (proname,object) values(#{proname},#{object})")
+    @Insert("insert into profession (proname,object,pfdescription) values(#{proname},#{object},#{pfdescription})")
     int addProfession(Profession professionInfo);
 
-    @Update("update profession set object = #{object} where proname = #{proname}")
+    @Update("update profession set object = #{object},pfdescription = #{pfdescription} where proname = #{proname}")
     int updateProfession(Profession professionInfo);
 }
