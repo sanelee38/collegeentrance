@@ -88,7 +88,7 @@ public class IndexController {
             user.setToken(token);
             userMapper.update(user);
             response.addCookie(new Cookie("token",token));
-            session.setAttribute("loginUser",username);
+            session.setAttribute("loginUser",user);
             map.put("msg","登陆成功");
             model.addAttribute("user",username);
             return "redirect:/";

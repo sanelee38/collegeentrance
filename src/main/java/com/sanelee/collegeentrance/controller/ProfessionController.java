@@ -11,11 +11,11 @@ import com.sanelee.collegeentrance.service.ProfessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -34,10 +34,12 @@ public class ProfessionController {
         return "profession";
     }
 
-    @GetMapping("/professionSC/{pid}")
+    @RequestMapping("/professionSC/{pid}")
     public String professionSC(@PathVariable(name="pid") Integer pid,
                                Model model) {
+        Profession profession = professionMapper.selectByPid(pid);
         List<School> schoolList = schoolMapper.findByPid(pid);
+        model.addAttribute("professions",profession);
         model.addAttribute("schools", schoolList);
         return "professionSC";
     }
@@ -49,6 +51,22 @@ public class ProfessionController {
         SearchDTO searchs = professionService.list(search);
         model.addAttribute("searchss",searchs);
         return "professionSearch";
+    }
+
+    @RequestMapping("/import")
+    @ResponseBody
+    public String excelImport(@RequestParam(value="filename") MultipartFile file, HttpSession session){
+        int result = 0;
+        try{
+            result =professionService.addUser(file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (result>0){
+            return "excle文件数据导入成功！";
+        }else {
+            return "excle文件数据导入失败！";
+        }
     }
 
 }

@@ -9,6 +9,8 @@ import java.util.List;
 public class Profession {
     private Integer pid;
     private String proname;
+    private String object;
+    private String pfdescription;
     private Integer maxscore;
     private Integer avgscore;
     private Integer minscore;

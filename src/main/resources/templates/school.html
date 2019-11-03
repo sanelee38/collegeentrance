@@ -81,7 +81,7 @@
                         <li th:if="${session.loginUser != null}" class="dropdown">
                             <a href="/profile" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                aria-expanded="false">
-                                <span  th:text="${session.loginUser}"></span>
+                                <span  th:text="${session.loginUser.username}"></span>
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">

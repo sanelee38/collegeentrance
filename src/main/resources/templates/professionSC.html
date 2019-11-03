@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>开设专业院校</title>
+    <title th:text="${professions.proname}"></title>
     <meta name="viewport" http-equiv="Content-Type" content="text/html; charset=UTF-8;width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
@@ -11,12 +11,46 @@
     <script src="/js/moment.js" type="application/javascript"></script>
 </head>
 <body>
-<div class="page-header" style="margin-left: 30px">
-    <h2>安全工程</h2>
-    <h5>安全工程是隶属于一级学科“安全科学与工程（学科代码0837）”的一个二级学科，
-        该专业注重培养能从事安全技术及工程、安全科学与研究、安全监察与管理、
-        工作场所危险有害因素识别与检测、安全设计与生产、安全教育与培训、
-        生产型企业职业卫生防护等方面复合型的高级工程技术人才，是一个涉及面极广的综合交叉学科。</h5>
+<div th:fragment="nav">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/profession">专业介绍</a>
+            </div>
+            <div class="collapse navbar-collapse" >
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/">首页</a></li>
+                    <li th:if="${session.loginUser != null}" class="dropdown">
+                        <a href="/profile" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            <span  th:text="${session.loginUser.username}"></span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/front/logout">退出登录</a></li>
+                        </ul>
+                    </li>
+                    <li th:if="${session.loginUser == null}">
+                        <button  onclick="window.location.href = '/front/login'" type="button" class="btn btn-default navbar-btn" style="margin-right: 20px">
+                            登录
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="page-header" style="margin-left: 30px ;margin-top: 70px">
+    <h2 th:text="${professions.proname}"></h2>
+    <h5 th:text="${professions.pfdescription}"></h5>
 </div>
 <div th:fragment="nav">
     <nav class="navbar navbar-default">
@@ -56,7 +90,7 @@
                     frameborder="no" framespacing="0" allowfullscreen="true" style="width: 100%; min-height: 450px"> </iframe>
     </div>
 </div>
-<div th:insert="~{navigation :: nav}">
+<!--<div th:insert="~{navigation :: nav}">-->
 
 </div>
 </body>

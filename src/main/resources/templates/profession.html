@@ -26,16 +26,23 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <form class="navbar-form navbar-nav" action="/professionSearch" method="get">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="search" placeholder="搜索专业">
+                        <input type="text" class="form-control" name="search" value=" " placeholder="搜索专业">
                     </div>
                     <button type="submit" class="btn btn-default">搜索</button>
                 </form>
+                <form th:if="${session.loginUser.admin != null}" class="navbar-form navbar-nav" id="form_table" action="/import" enctype="multipart/form-data" method="post">
+                    <div class="form-group">
+                        <input class="form-input" type="file" name="filename">
+                    </div>
+                    <button type="submit" class="btn btn-default">导入</button>
+
+                </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/">首页</a></li>
-                    <li th:if="${session.loginUser != null}" class="dropup">
+                    <li th:if="${session.loginUser != null}" class="dropdown">
                         <a href="/profile" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">
-                            <span  th:text="${session.loginUser}"></span>
+                            <span  th:text="${session.loginUser.username}"></span>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">

@@ -10,6 +10,7 @@ import java.util.List;
 public class ProfessionDTO {
     private Integer pid;
     private String proname;
+    private String object;
     private School scid;
 //    private T_School_Profession maxscore;
 //    private T_School_Profession avgscore;
