@@ -20,12 +20,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -141,6 +144,26 @@ public class SchoolController {
         response.setHeader("Content-disposition", "attachment;filename=" + URLEncoder.encode(fileName,"utf-8"));
         response.flushBuffer();
         workbook.write(response.getOutputStream());
+    }
+    @RequestMapping("/importSchool")
+    public String excelImport(@RequestParam(value="filename") MultipartFile file,
+                              HttpSession session,
+                              HashMap<String, Object> map,
+                              Model model){
+        int result = 0;
+        try{
+            result =schoolService.addSchool(file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (result>0){
+            model.addAttribute("import","excle文件数据导入成功！");
+            map.put("path","school");
+        }else {
+            model.addAttribute("import","excle文件数据导入失败！");
+            map.put("path","school");
+        }
+        return "import";
     }
 
 }

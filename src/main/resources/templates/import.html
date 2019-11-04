@@ -1,11 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>导入</title>
-    <meta http-equiv="refresh" content="5;url=profession.html">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>登录</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/ie10-viewport-bug-workaround.css">
+    <link rel="stylesheet" href="/css/signin.css" >
+    <link rel="stylesheet" href="/css/college.css">
+    <script src="/js/ie-emulation-modes-warning.js"></script>
+
 </head>
 <body>
+<div class="container">
+    <div>
+        <h3 th:text="${import}"></h3>
+    </div>
+    <div>
+        <a th:href="@{'/'+${path}}">点击返回</a>
+    </div>
 
+
+</div>
 </body>
 </html>

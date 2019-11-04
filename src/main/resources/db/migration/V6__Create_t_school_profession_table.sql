@@ -7,6 +7,7 @@ create table t_school_profession
     maxscore      int           null,
     scid          int default 0 not null,
     pid           int default 0 not null,
+    sort          int(5)        null,
     primary key (scid, pid),
     constraint t_school_profession_ibfk_1
         foreign key (scid) references school (scid),

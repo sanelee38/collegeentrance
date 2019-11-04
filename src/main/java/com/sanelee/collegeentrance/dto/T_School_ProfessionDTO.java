@@ -6,12 +6,13 @@ import lombok.Data;
 
 @Data
 public class T_School_ProfessionDTO {
-    private Integer scid;
-    private Integer maxscore;
-    private Integer avgscore;
-    private Integer minscore;
-    private Integer minrank;
-    private Integer pid;
+    private int scid;
+    private int maxscore;
+    private int avgscore;
+    private int minscore;
+    private int minrank;
+    private int pid;
+    private int sort;
     private Profession profession;
     private School school;
 }

@@ -1,8 +1,10 @@
 create table profession
 (
-    pid     int auto_increment
+    pfdescription longtext     null,
+    object        varchar(50)  null,
+    pid           int auto_increment
         primary key,
-    proname varchar(100) not null,
+    proname       varchar(100) not null,
     constraint name
         unique (proname)
 );

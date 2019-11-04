@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -54,8 +55,10 @@ public class ProfessionController {
     }
 
     @RequestMapping("/import")
-    @ResponseBody
-    public String excelImport(@RequestParam(value="filename") MultipartFile file, HttpSession session){
+    public String excelImport(@RequestParam(value="filename") MultipartFile file,
+                              HttpSession session,
+                              HashMap<String, Object> map,
+                              Model model){
         int result = 0;
         try{
             result =professionService.addUser(file);
@@ -63,10 +66,12 @@ public class ProfessionController {
             e.printStackTrace();
         }
         if (result>0){
-            return "excle文件数据导入成功！";
+            model.addAttribute("import","excle文件数据导入成功！");
+            map.put("path","profession");
         }else {
-            return "excle文件数据导入失败！";
+            model.addAttribute("import","excle文件数据导入失败！");
         }
+        return "import";
     }
 
 }
