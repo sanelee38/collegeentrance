@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${schools.name}"></title>
+    <meta name="viewport" http-equiv="Content-Type"
+          content="text/html; charset=UTF-8;width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/college.css">
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="/js/moment.js" type="application/javascript"></script>
+
+</head>
+<body style="padding-bottom: 70px; text-align:center">
+<div th:fragment="nav">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/profession">学校介绍</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/">首页</a></li>
+                    <li th:if="${session.loginUser != null}" class="dropdown">
+                        <a href="/profile" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true"
+                           aria-expanded="false">
+                            <span th:text="${session.loginUser.username}"></span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/front/logout">退出登录</a></li>
+                        </ul>
+                    </li>
+                    <li th:if="${session.loginUser == null}">
+                        <button onclick="window.location.href = '/front/login'" type="button"
+                                class="btn btn-default navbar-btn" style="margin-right: 20px">
+                            登录
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="container-fluid col-lg-12 col-md-12 col-sm-12 col-xs-12" style=" margin-top: 70px">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h2 th:text="${schools.name}"></h2>
+            <h4 th:text="${schools.acronym}"></h4>
+            <h6 th:text="'所在地区：'+${schools.areaname}+'&nbsp;'+'&nbsp;'+'&nbsp;'+'&nbsp;'+'类型：'+${schools.batch}+'&nbsp;'+'&nbsp;'+'&nbsp;'+'&nbsp;'+'&nbsp;'+'性质：'+'&nbsp;'+'&nbsp;'+'&nbsp;'+'&nbsp;'"></h6>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="row container-fluid">
+        <div class="container-fluid col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">相关介绍</h3>
+                </div>
+                <div class="panel-body">
+                    <ol class="breadcrumb">
+                        <li class="active">院校介绍：</li>
+                        <li><a th:href="@{'/introduce/'+${schools.scid}}">学校简介</a></li>
+                        <li><a href="#">师资力量</a></li>
+                        <li><a href="#">历史沿革</a></li>
+                    </ol>
+                    <ol class="breadcrumb">
+                        <li class="active">招生录取：</li>
+                        <li><a href="#">招生章程</a></li>
+                        <li><a href="#">招生计划</a></li>
+                    </ol>
+                    <ol class="breadcrumb">
+                        <li class="active">院校情况：</li>
+                        <li><a href="#">专业设置</a></li>
+                        <li><a href="#">双一流学科</a></li>
+                        <li><a href="#">重点学科</a></li>
+                        <li><a href="#">院系设置</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">录取分数线</h3>
+                </div>
+                <div class="panel-body">
+                    <ol class="breadcrumb">
+                        <li><a th:href="@{'/schoolScore/'+${schools.scid}}">在陕录取分数线</a></li>
+                        <li><a th:href="@{'/professionScore/'+${schools.scid}}">各专业录取分数线</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="row container-fluid">
+        <div class="container-fluid col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">学校简介</h3>
+                </div>
+                <div class="panel-body">
+                    <h4 th:text="${schools.description}"></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -70,6 +70,51 @@ public class SchoolDescController {
         return "school_desc_l";
     }
 
+    @RequestMapping("/introduce/{scid}")
+    public String schoolIntroduce(@PathVariable(name="scid") Integer scid,
+                               Model model){
+        School school = schoolMapper.findByScid(scid);
+        model.addAttribute("schools",school);
+        return "introduce";
+    }
+
+    @RequestMapping("/schoolScore/{scid}")
+    public String schoolScore(@PathVariable(name="scid") Integer scid,
+                                  Model model){
+        School school = schoolMapper.findByScid(scid);
+        List<ScoreDTO> scoreList = scoreService.findByScidL(scid);
+        List<Score> scoresList = scoreMapper.list();
+        List<ScoreDTO> scoreListW = scoreService.findByScidW(scid);
+        List<Score> scoresListW = scoreMapper.list();
+        List<Score2017DTO> score2017List = score2017Service.find2017ByScidL(scid);
+        List<Score2017> scores2017List = score2017Mapper.list();
+        List<Score2017DTO> score2017ListW = score2017Service.find2017ByScidW(scid);
+        List<Score2017> scores2017ListW = score2017Mapper.list();
+        model.addAttribute("schools",school);
+        model.addAttribute("scores",scoresList);
+        model.addAttribute("score",scoreList);
+        model.addAttribute("scoresW",scoresListW);
+        model.addAttribute("scoreW",scoreListW);
+        model.addAttribute("scores2017",scores2017List);
+        model.addAttribute("score2017",score2017List);
+        model.addAttribute("scoresW2017",scores2017ListW);
+        model.addAttribute("scoreW2017",score2017ListW);
+        return "schoolScore";
+    }
+
+    @RequestMapping("/professionScore/{scid}")
+    public String professionScore(@PathVariable(name="scid") Integer scid,
+                                  Model model){
+        School school = schoolMapper.findByScid(scid);
+        List<Profession> professionList = professionMapper.findProByScid(scid);
+        List<Profession> professionsList = professionMapper.list();
+        model.addAttribute("schools",school);
+        model.addAttribute("professions",professionsList);
+        model.addAttribute("profession",professionList);
+        return "professionScore";
+    }
+
+
 
 
 }

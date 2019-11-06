@@ -1,38 +1,41 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
 <head>
     <title th:text="${schools.name}"></title>
-    <meta name="viewport" http-equiv="Content-Type"
-          content="text/html; charset=UTF-8;width=device-width, initial-scale=1"/>
+    <meta name="viewport" http-equiv="Content-Type" content="text/html; charset=UTF-8;width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/docs/css/bootstrap-example.min.css" type="text/css">
+    <link rel="stylesheet" href="/docs/css/prettify.min.css" type="text/css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/college.css">
+    <link rel="stylesheet" href="/css/bootstrap-select.min.css">
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+    <script type="text/javascript" src="/docs/js/prettify.min.js"></script>
+    <link rel="stylesheet" href="/dist/css/bootstrap-multiselect.css" type="text/css">
+    <script type="text/javascript" src="/dist/js/bootstrap-multiselect.js"></script>
     <script src="/js/moment.js" type="application/javascript"></script>
+    <script src="/js/bootstrap-select.min.js"></script>
 
 </head>
-<body style="padding-bottom: 70px; " >
+<body style="padding-bottom: 70px; text-align:center">
 <div th:fragment="nav">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 </button>
                 <a class="navbar-brand" href="/profession">学校介绍</a>
             </div>
-            <div class="collapse navbar-collapse" >
-
-                <ul class="nav navbar-nav navbar-right">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right" >
                     <li><a href="/">首页</a></li>
-                    <li th:if="${session.loginUser != null}" class="dropup">
-                        <a href="/profile" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                    <li th:if="${session.loginUser != null}" class="dropdown">
+                        <a href="/profile" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true"
                            aria-expanded="false">
-                            <span  th:text="${session.loginUser.username}"></span>
+                            <span th:text="${session.loginUser.username}"></span>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
@@ -40,7 +43,8 @@
                         </ul>
                     </li>
                     <li th:if="${session.loginUser == null}">
-                        <button  onclick="window.location.href = '/front/login'" type="button" class="btn btn-default navbar-btn" style="margin-right: 20px">
+                        <button onclick="window.location.href = '/front/login'" type="button"
+                                class="btn btn-default navbar-btn" style="margin-right: 20px">
                             登录
                         </button>
                     </li>
@@ -49,268 +53,321 @@
         </div>
     </nav>
 </div>
-<div class="page-header" style="margin-left: 30px; margin-top: 70px" >
-    <h2 th:text="${schools.name}"></h2>
-    <h4 th:text="${schools.acronym}"></h4>
-    <h5 th:text="${schools.description}"></h5>
+<div class="container-fluid col-lg-12 col-md-12 col-sm-12 col-xs-12" style=" margin-top: 70px">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h2 th:text="${schools.name}"></h2>
+            <h4 th:text="${schools.acronym}"></h4>
+            <h6 th:text="'所在地区：'+${schools.areaname}+'&nbsp;'+'&nbsp;'+'&nbsp;'+'&nbsp;'+'类型：'+${schools.batch}+'&nbsp;'+'&nbsp;'+'&nbsp;'+'&nbsp;'+'&nbsp;'+'性质：'+'&nbsp;'+'&nbsp;'+'&nbsp;'+'&nbsp;'"></h6>
+        </div>
+    </div>
 </div>
 <div>
-    <div class="container-fluid">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="row container-fluid">
+        <div class="container-fluid col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <select name="status" id="tabs">
-                        <option>2018年录取分数线</option>
-                        <option>2017年录取分数线</option>
-                        <option>2016年录取分数线</option>
-                    </select>
+                    <h3 class="panel-title">相关介绍</h3>
                 </div>
-                <div id="content">
-                    <div id="chanpin0">
-                        <div>
-                            <select name="status2" id="tabs2" >
-                                <option>理科</option>
-                                <option>文科</option>
-                            </select>
-                            <div id="content2">
-                                <div id="chanpin2_0">
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th>省份</th>
-                                            <td>最高分</td>
-                                            <td>平均分</td>
-                                            <td>最低分</td>
-                                            <td>最低位次</td>
-                                        </tr>
-                                        </thead>
-                                        <tbody th:each="scores:${score}">
-                                        <tr>
-                                            <th scope="row" th:text="${scores.area}"></th>
-                                            <td th:text="${scores.maxscore}"></td>
-                                            <td th:text="${scores.avgscore}"></td>
-                                            <td th:text="${scores.minscore}"></td>
-                                            <td th:text="${scores.minrank}"></td>
-<!--                                            <td th:text="${scores.school.description}"></td>-->
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div id="chanpin2_1">
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th>省份</th>
-                                            <td>最高分</td>
-                                            <td>平均分</td>
-                                            <td>最低分</td>
-                                            <td>最低位次</td>
-                                        </tr>
-                                        </thead>
-                                        <tbody th:each="scoresW:${scoreW}">
-                                        <tr>
-                                            <th scope="row" th:text="${scoresW.area}"></th>
-                                            <td th:text="${scoresW.maxscore}"></td>
-                                            <td th:text="${scoresW.avgscore}"></td>
-                                            <td th:text="${scoresW.minscore}"></td>
-                                            <td th:text="${scoresW.minrank}"></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">招生专业</div>
-                            <div class="panel-body">
-                                <p></p>
-                            </div>
-                            <table class="table" style="table-layout:fixed;">
-                                <thead>
-                                <tr>
-                                    <th>专业</th>
-                                    <td>最高分</td>
-                                    <td>平均分</td>
-                                    <td>最低分</td>
-                                    <td width="25%">最低位次</td>
-                                </tr>
-                                </thead>
-                                <tbody th:each="professions:${profession}">
-                                <tr >
-                                    <td><a scope="row" th:href="@{'/professionSC/'+${professions.pid}}" th:text="${professions.proname}"></a></td>
-                                    <td th:text="${professions.maxscore}"></td>
-                                    <td th:text="${professions.avgscore}"></td>
-                                    <td th:text="${professions.minscore}"></td>
-                                    <td th:text="${professions.minrank}"></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div id="chanpin1">
-                        <div>
-                            <select name="status2" id="tabs3" >
-                                <option>理科</option>
-                                <option>文科</option>
-                            </select>
-                            <div id="content3">
-                                <div id="chanpin3_0">
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th>省份</th>
-                                            <td>最高分</td>
-                                            <td>平均分</td>
-                                            <td>最低分</td>
-                                            <td>最低位次</td>
-                                        </tr>
-                                        </thead>
-                                        <tbody th:each="scores2017:${score2017}">
-                                        <tr>
-                                            <th scope="row" th:text="${scores2017.area}"></th>
-                                            <td th:text="${scores2017.maxscore}"></td>
-                                            <td th:text="${scores2017.avgscore}"></td>
-                                            <td th:text="${scores2017.minscore}"></td>
-                                            <td th:text="${scores2017.minrank}"></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div id="chanpin3_1">
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th>省份</th>
-                                            <td>最高分</td>
-                                            <td>平均分</td>
-                                            <td>最低分</td>
-                                            <td>最低位次</td>
-                                        </tr>
-                                        </thead>
-                                        <tbody th:each="scoresW2017:${scoreW2017}">
-                                        <tr>
-                                            <th scope="row" th:text="${scoresW2017.area}"></th>
-                                            <td th:text="${scoresW2017.maxscore}"></td>
-                                            <td th:text="${scoresW2017.avgscore}"></td>
-                                            <td th:text="${scoresW2017.minscore}"></td>
-                                            <td th:text="${scoresW2017.minrank}"></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">招生专业</div>
-                            <div class="panel-body">
-                                <p></p>
-                            </div>
-                            <table class="table" style="table-layout:fixed;">
-                                <thead>
-                                <tr>
-                                    <th>专业</th>
-                                    <td>最高分</td>
-                                    <td>平均分</td>
-                                    <td>最低分</td>
-                                    <td width="25%">最低位次</td>
-                                </tr>
-                                </thead>
-                                <tbody th:each="professions:${profession}">
-                                <tr>
-                                    <td><a scope="row" th:href="@{'/professionSC/'+${professions.pid}}" th:text="${professions.proname}"></a></td>
-                                    <td th:text="${professions.maxscore}"></td>
-                                    <td th:text="${professions.avgscore}"></td>
-                                    <td th:text="${professions.minscore}"></td>
-                                    <td th:text="${professions.minrank}"></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                <div class="panel-body">
+                    <ol class="breadcrumb">
+                        <li class="active">院校介绍：</li>
+                        <li><a th:href="@{'/introduce/'+${schools.scid}}">学校简介</a></li>
+                        <li><a href="#">师资力量</a></li>
+                        <li><a href="#">历史沿革</a></li>
+                    </ol>
+                    <ol class="breadcrumb">
+                        <li class="active">招生录取：</li>
+                        <li><a href="#">招生章程</a></li>
+                        <li><a href="#">招生计划</a></li>
+                    </ol>
+                    <ol class="breadcrumb">
+                        <li class="active">院校情况：</li>
+                        <li><a href="#">专业设置</a></li>
+                        <li><a href="#">双一流学科</a></li>
+                        <li><a href="#">重点学科</a></li>
+                        <li><a href="#">院系设置</a></li>
+                    </ol>
                 </div>
-
-
+            </div>
+        </div>
+        <div class="container-fluid col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">录取分数线</h3>
+                </div>
+                <div class="panel-body">
+                    <ol class="breadcrumb">
+                        <li><a th:href="@{'/schoolScore/'+${schools.scid}}">在陕录取分数线</a></li>
+                        <li><a th:href="@{'/professionScore/'+${schools.scid}}">各专业录取分数线</a></li>
+                    </ol>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<!--<div th:insert="~{navigation :: nav}"></div>-->
-<script>
-    $(document).ready(function(){
-        $("#chanpin1").hide();
-        $("#chanpin2").hide();
-        $("#chanpin3").hide();
-        $("#chanpin4").hide();
-        $("#chanpin5").hide();
-        $("#chanpin6").hide();
-    });
-    $(function(){
-        var li = $('#tabs');
-        var cc=$('#tabs option');
-        var len=cc.length;
-        li.change(function(){
-            var t = parseInt(li.get(0).selectedIndex);
-            var id=$('#chanpin'+t);
-            // alert(t) ;
-            for(var i= 0;i<len;i++){
-                if(t==i){
-                    // alert(i);
-                    $('#chanpin'+t).show();
-                }else{
-                    $('#chanpin'+i).hide();
-                }
-                // if(t==0){$('#chanpin'+i).show();}
-            }
-        });
-    });
-</script>
-<script>
-    $(document).ready(function(){
-        $("#chanpin2_1").hide();
-    });
-    $(function(){
-        var li = $('#tabs2');
-        var cc=$('#tabs2 option');
-        var len=cc.length;
-        li.change(function(){
-            //  alert(123);
-            var t = parseInt(li.get(0).selectedIndex);
-            // var id=$('#chanpin'+t);
-            //  alert(t) ;
-            for(var i= 0;i<len;i++){
-                if(t==i){
-                    // alert(i);
-                    $('#chanpin2_'+t).show();
-                }else{
-                    $('#chanpin2_'+i).hide();
-                }
-            }
-        });
-    });
-</script>
-<script>
-    $(document).ready(function(){
-        $("#chanpin3_1").hide();
-    });
-    $(function(){
-        var li = $('#tabs3');
-        var cc=$('#tabs3 option');
-        var len=cc.length;
-        li.change(function(){
-            //  alert(123);
-            var t = parseInt(li.get(0).selectedIndex);
-            // var id=$('#chanpin'+t);
-            //  alert(t) ;
-            for(var i= 0;i<len;i++){
-                if(t==i){
-                    // alert(i);
-                    $('#chanpin3_'+t).show();
-                }else{
-                    $('#chanpin3_'+i).hide();
-                }
-            }
-        });
-    });
-</script>
+
+
+
+<!--<div>-->
+<!--    <div class="container-fluid">-->
+<!--        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">-->
+<!--            <div class="panel panel-default">-->
+<!--                <div class="panel-heading">-->
+<!--                    <select name="status" id="tabs">-->
+<!--                        <option>2018年录取分数线</option>-->
+<!--                        <option>2017年录取分数线</option>-->
+<!--                        <option>2016年录取分数线</option>-->
+<!--                    </select>-->
+<!--                </div>-->
+<!--                <div id="content">-->
+<!--                    <div id="chanpin0">-->
+<!--                        <div>-->
+<!--                            <select name="status2" id="tabs2">-->
+<!--                                <option>理科</option>-->
+<!--                                <option>文科</option>-->
+<!--                            </select>-->
+<!--                            <div id="content2">-->
+<!--                                <div id="chanpin2_0">-->
+<!--                                    <table class="table">-->
+<!--                                        <thead>-->
+<!--                                        <tr>-->
+<!--                                            <th>省份</th>-->
+<!--                                            <td>最高分</td>-->
+<!--                                            <td>平均分</td>-->
+<!--                                            <td>最低分</td>-->
+<!--                                            <td>最低位次</td>-->
+<!--                                        </tr>-->
+<!--                                        </thead>-->
+<!--                                        <tbody th:each="scores:${score}">-->
+<!--                                        <tr>-->
+<!--                                            <th scope="row" th:text="${scores.area}"></th>-->
+<!--                                            <td th:text="${scores.maxscore}"></td>-->
+<!--                                            <td th:text="${scores.avgscore}"></td>-->
+<!--                                            <td th:text="${scores.minscore}"></td>-->
+<!--                                            <td th:text="${scores.minrank}"></td>-->
+<!--                                            &lt;!&ndash;                                            <td th:text="${scores.school.description}"></td>&ndash;&gt;-->
+<!--                                        </tr>-->
+<!--                                        </tbody>-->
+<!--                                    </table>-->
+<!--                                </div>-->
+<!--                                <div id="chanpin2_1">-->
+<!--                                    <table class="table">-->
+<!--                                        <thead>-->
+<!--                                        <tr>-->
+<!--                                            <th>省份</th>-->
+<!--                                            <td>最高分</td>-->
+<!--                                            <td>平均分</td>-->
+<!--                                            <td>最低分</td>-->
+<!--                                            <td>最低位次</td>-->
+<!--                                        </tr>-->
+<!--                                        </thead>-->
+<!--                                        <tbody th:each="scoresW:${scoreW}">-->
+<!--                                        <tr>-->
+<!--                                            <th scope="row" th:text="${scoresW.area}"></th>-->
+<!--                                            <td th:text="${scoresW.maxscore}"></td>-->
+<!--                                            <td th:text="${scoresW.avgscore}"></td>-->
+<!--                                            <td th:text="${scoresW.minscore}"></td>-->
+<!--                                            <td th:text="${scoresW.minrank}"></td>-->
+<!--                                        </tr>-->
+<!--                                        </tbody>-->
+<!--                                    </table>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="panel panel-default">-->
+<!--                            <div class="panel-heading">招生专业</div>-->
+<!--                            <div class="panel-body">-->
+<!--                                <p></p>-->
+<!--                            </div>-->
+<!--                            <table class="table" style="table-layout:fixed;">-->
+<!--                                <thead>-->
+<!--                                <tr>-->
+<!--                                    <th>专业</th>-->
+<!--                                    <td>最高分</td>-->
+<!--                                    <td>平均分</td>-->
+<!--                                    <td>最低分</td>-->
+<!--                                    <td width="25%">最低位次</td>-->
+<!--                                </tr>-->
+<!--                                </thead>-->
+<!--                                <tbody th:each="professions:${profession}">-->
+<!--                                <tr>-->
+<!--                                    <td><a scope="row" th:href="@{'/professionSC/'+${professions.pid}}"-->
+<!--                                           th:text="${professions.proname}"></a></td>-->
+<!--                                    <td th:text="${professions.maxscore}"></td>-->
+<!--                                    <td th:text="${professions.avgscore}"></td>-->
+<!--                                    <td th:text="${professions.minscore}"></td>-->
+<!--                                    <td th:text="${professions.minrank}"></td>-->
+<!--                                </tr>-->
+<!--                                </tbody>-->
+<!--                            </table>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div id="chanpin1">-->
+<!--                        <div>-->
+<!--                            <select name="status2" id="tabs3">-->
+<!--                                <option>理科</option>-->
+<!--                                <option>文科</option>-->
+<!--                            </select>-->
+<!--                            <div id="content3">-->
+<!--                                <div id="chanpin3_0">-->
+<!--                                    <table class="table">-->
+<!--                                        <thead>-->
+<!--                                        <tr>-->
+<!--                                            <th>省份</th>-->
+<!--                                            <td>最高分</td>-->
+<!--                                            <td>平均分</td>-->
+<!--                                            <td>最低分</td>-->
+<!--                                            <td>最低位次</td>-->
+<!--                                        </tr>-->
+<!--                                        </thead>-->
+<!--                                        <tbody th:each="scores2017:${score2017}">-->
+<!--                                        <tr>-->
+<!--                                            <th scope="row" th:text="${scores2017.area}"></th>-->
+<!--                                            <td th:text="${scores2017.maxscore}"></td>-->
+<!--                                            <td th:text="${scores2017.avgscore}"></td>-->
+<!--                                            <td th:text="${scores2017.minscore}"></td>-->
+<!--                                            <td th:text="${scores2017.minrank}"></td>-->
+<!--                                        </tr>-->
+<!--                                        </tbody>-->
+<!--                                    </table>-->
+<!--                                </div>-->
+<!--                                <div id="chanpin3_1">-->
+<!--                                    <table class="table">-->
+<!--                                        <thead>-->
+<!--                                        <tr>-->
+<!--                                            <th>省份</th>-->
+<!--                                            <td>最高分</td>-->
+<!--                                            <td>平均分</td>-->
+<!--                                            <td>最低分</td>-->
+<!--                                            <td>最低位次</td>-->
+<!--                                        </tr>-->
+<!--                                        </thead>-->
+<!--                                        <tbody th:each="scoresW2017:${scoreW2017}">-->
+<!--                                        <tr>-->
+<!--                                            <th scope="row" th:text="${scoresW2017.area}"></th>-->
+<!--                                            <td th:text="${scoresW2017.maxscore}"></td>-->
+<!--                                            <td th:text="${scoresW2017.avgscore}"></td>-->
+<!--                                            <td th:text="${scoresW2017.minscore}"></td>-->
+<!--                                            <td th:text="${scoresW2017.minrank}"></td>-->
+<!--                                        </tr>-->
+<!--                                        </tbody>-->
+<!--                                    </table>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="panel panel-default">-->
+<!--                            <div class="panel-heading">招生专业</div>-->
+<!--                            <div class="panel-body">-->
+<!--                                <p></p>-->
+<!--                            </div>-->
+<!--                            <table class="table" style="table-layout:fixed;">-->
+<!--                                <thead>-->
+<!--                                <tr>-->
+<!--                                    <th>专业</th>-->
+<!--                                    <td>最高分</td>-->
+<!--                                    <td>平均分</td>-->
+<!--                                    <td>最低分</td>-->
+<!--                                    <td width="25%">最低位次</td>-->
+<!--                                </tr>-->
+<!--                                </thead>-->
+<!--                                <tbody th:each="professions:${profession}">-->
+<!--                                <tr>-->
+<!--                                    <td><a scope="row" th:href="@{'/professionSC/'+${professions.pid}}"-->
+<!--                                           th:text="${professions.proname}"></a></td>-->
+<!--                                    <td th:text="${professions.maxscore}"></td>-->
+<!--                                    <td th:text="${professions.avgscore}"></td>-->
+<!--                                    <td th:text="${professions.minscore}"></td>-->
+<!--                                    <td th:text="${professions.minrank}"></td>-->
+<!--                                </tr>-->
+<!--                                </tbody>-->
+<!--                            </table>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--&lt;!&ndash;<div th:insert="~{navigation :: nav}"></div>&ndash;&gt;-->
+<!--<script>-->
+<!--    $(document).ready(function () {-->
+<!--        $("#chanpin1").hide();-->
+<!--        $("#chanpin2").hide();-->
+<!--        $("#chanpin3").hide();-->
+<!--        $("#chanpin4").hide();-->
+<!--        $("#chanpin5").hide();-->
+<!--        $("#chanpin6").hide();-->
+<!--    });-->
+<!--    $(function () {-->
+<!--        var li = $('#tabs');-->
+<!--        var cc = $('#tabs option');-->
+<!--        var len = cc.length;-->
+<!--        li.change(function () {-->
+<!--            var t = parseInt(li.get(0).selectedIndex);-->
+<!--            var id = $('#chanpin' + t);-->
+<!--            // alert(t) ;-->
+<!--            for (var i = 0; i < len; i++) {-->
+<!--                if (t == i) {-->
+<!--                    // alert(i);-->
+<!--                    $('#chanpin' + t).show();-->
+<!--                } else {-->
+<!--                    $('#chanpin' + i).hide();-->
+<!--                }-->
+<!--                // if(t==0){$('#chanpin'+i).show();}-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+<!--<script>-->
+<!--    $(document).ready(function () {-->
+<!--        $("#chanpin2_1").hide();-->
+<!--    });-->
+<!--    $(function () {-->
+<!--        var li = $('#tabs2');-->
+<!--        var cc = $('#tabs2 option');-->
+<!--        var len = cc.length;-->
+<!--        li.change(function () {-->
+<!--            //  alert(123);-->
+<!--            var t = parseInt(li.get(0).selectedIndex);-->
+<!--            // var id=$('#chanpin'+t);-->
+<!--            //  alert(t) ;-->
+<!--            for (var i = 0; i < len; i++) {-->
+<!--                if (t == i) {-->
+<!--                    // alert(i);-->
+<!--                    $('#chanpin2_' + t).show();-->
+<!--                } else {-->
+<!--                    $('#chanpin2_' + i).hide();-->
+<!--                }-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+<!--<script>-->
+<!--    $(document).ready(function () {-->
+<!--        $("#chanpin3_1").hide();-->
+<!--    });-->
+<!--    $(function () {-->
+<!--        var li = $('#tabs3');-->
+<!--        var cc = $('#tabs3 option');-->
+<!--        var len = cc.length;-->
+<!--        li.change(function () {-->
+<!--            //  alert(123);-->
+<!--            var t = parseInt(li.get(0).selectedIndex);-->
+<!--            // var id=$('#chanpin'+t);-->
+<!--            //  alert(t) ;-->
+<!--            for (var i = 0; i < len; i++) {-->
+<!--                if (t == i) {-->
+<!--                    // alert(i);-->
+<!--                    $('#chanpin3_' + t).show();-->
+<!--                } else {-->
+<!--                    $('#chanpin3_' + i).hide();-->
+<!--                }-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
 </body>
 </html>
