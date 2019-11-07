@@ -17,6 +17,8 @@ public class SchoolDTO {
     private String acronym;
     private Profession pid;
     private String  proname;
+    private String region;
+    private Integer reid;
     private int maxscore;
     private int avgscore;
     private int minscore;

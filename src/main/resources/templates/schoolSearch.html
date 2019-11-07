@@ -32,24 +32,24 @@
                 console.log(selectValueStr)
             })
         });
-        $(function() {
-            if (localStorage.getItem('ctc')) {
-                $("#ctc option").eq(localStorage.getItem('ctc')).prop('selected', true);
-            }
-
-            $("#ctc").on('change', function() {
-                localStorage.setItem('ctc', $('option:selected', this).index());
-            });
-        });
-        $(function() {
-            if (localStorage.getItem('ctc2')) {
-                $("#ctc2 option").eq(localStorage.getItem('ctc2')).prop('selected', true);
-            }
-
-            $("#ctc2").on('change', function() {
-                localStorage.setItem('ctc2', $('option:selected', this).index());
-            });
-        });
+        // $(function() {
+        //     if (localStorage.getItem('ctc')) {
+        //         $("#ctc option").eq(localStorage.getItem('ctc')).prop('selected', true);
+        //     }
+        //
+        //     $("#ctc").on('change', function() {
+        //         localStorage.setItem('ctc', $('option:selected', this).index());
+        //     });
+        // });
+        // $(function() {
+        //     if (localStorage.getItem('ctc2')) {
+        //         $("#ctc2 option").eq(localStorage.getItem('ctc2')).prop('selected', true);
+        //     }
+        //
+        //     $("#ctc2").on('change', function() {
+        //         localStorage.setItem('ctc2', $('option:selected', this).index());
+        //     });
+        // });
         function downloadFile(){
             document.demo.action="/SchoolExcelDownloads";
             document.demo.submit();
@@ -66,6 +66,8 @@
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
+                <button type="button" class="glyphicon glyphicon-align-justify navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" style="margin-right: 30px;margin-top: 8px">
+                </button>
                 <a class="navbar-brand" href="/school">院校大全</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

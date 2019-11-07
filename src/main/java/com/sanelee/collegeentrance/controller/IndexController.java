@@ -68,7 +68,7 @@ public class IndexController {
             map.put("msg","注册成功,请登录！");
             return "login";
         }else {
-            map.put("msg","格式不正确或用户名已存在！");
+            map.put("msg","密码不一致或用户名已存在！");
             return "register";
         }
     }

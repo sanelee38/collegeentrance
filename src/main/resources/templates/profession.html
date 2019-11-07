@@ -15,11 +15,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                <button type="button" class="glyphicon glyphicon-align-justify navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" style="margin-right: 30px;margin-top: 8px">                    <span class="sr-only">Toggle navigation</span>
                 </button>
                 <a class="navbar-brand" href="/profession">专业大全</a>
             </div>
@@ -58,22 +54,26 @@
         </div>
     </nav>
 </div>
-
-<div class="contentDiv">
-    <div class="container-fluid">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <ul class="list-group" th:each="profession:${professions}">
-                <li class="media" >
-                    <a th:href="@{'professionSC/'+${profession.pid}}" style="text-decoration: none;">
-                        <div class="media-body" >
-                            <h4 class="media-heading" th:text="${profession.proname}"></h4>
+<div style=" margin-top: 70px">
+    <div class="row container-fluid">
+        <div class="container-fluid col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">按学科</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="menu row" >
+                            <div class="col-xs-4 col-md-4 school-icon " th:each="object:${objects}">
+                                <a class="glyphicon glyphicon-book" th:href="@{'/professionList/'+${object.obid}}" style="text-decoration: none;"></a>
+                                <h4 th:text="${object.object}"></h4>
+                            </div>
                         </div>
-                    </a>
-                </li>
-            </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 </div>
 <!--<div th:insert="~{navigation :: nav}"></div>-->
 </body>

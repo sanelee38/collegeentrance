@@ -16,10 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableMBeanExport;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -55,6 +52,7 @@ public class SchoolController {
         List<School> schoolListYn = schoolMapper.listYN();
         List<School> schoolListHb = schoolMapper.listHB();
         List<School> schoolListHlj = schoolMapper.listHLJ();
+        List<School> regionList = schoolMapper.regionReid();
         model.addAttribute("areas",areaList);
         model.addAttribute("schools",schoolList);
         model.addAttribute("schoolsBj",schoolListBj);
@@ -64,7 +62,25 @@ public class SchoolController {
         model.addAttribute("schoolsYn",schoolListYn);
         model.addAttribute("schoolsHb",schoolListHb);
         model.addAttribute("schoolsHlj",schoolListHlj);
+        model.addAttribute("regions",regionList);
         return "school";
+    }
+
+    @RequestMapping("/schoolList/{reid}")
+    public String schoolList(@PathVariable(name="reid") Integer reid,
+                                  Model model){
+        List<School> schoolList = schoolMapper.selectByReid(reid);
+        List<School> areaList = schoolMapper.selectAreaByReid(reid);
+        model.addAttribute("schools",schoolList);
+        model.addAttribute("areas",areaList);
+        return "schoolList";
+    }
+    @GetMapping("/schoolSearchList")
+    public String schoolSearchList(Model model,
+                                   @RequestParam(name = "search",required = false) String search){
+        SearchDTO searchList = schoolService.list(search);
+        model.addAttribute("searchs",searchList);
+        return "schoolSearchList";
     }
 
     @GetMapping("/schoolSearch")

@@ -56,4 +56,13 @@ public interface SchoolMapper {
 
     @Select("Select * from profession where proname regexp #{proSearch}")
     List<School> selectByProSearch(SchoolQueryDTO schoolQueryDTO);
+
+    @Select("SELECT DISTINCT region,reid FROM school ORDER BY reid;")
+    List<School> regionReid();
+
+    @Select("select * from school where reid = #{reid} ORDER BY areaid")
+    List<School> selectByReid(@Param("reid") int reid);
+
+    @Select("SELECT DISTINCT areaname,areaid FROM school WHERE reid=#{reid};")
+    List<School> selectAreaByReid(@Param("reid") int reid);
 }

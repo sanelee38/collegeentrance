@@ -31,8 +31,18 @@ public class ProfessionController {
     @GetMapping("/profession")
     public String profession(Model model){
         List<Profession> professionList = professionMapper.list();
+        List<Profession> objectList = professionMapper.objectObid();
         model.addAttribute("professions",professionList);
+        model.addAttribute("objects",objectList);
         return "profession";
+    }
+
+    @RequestMapping("/professionList/{obid}")
+    public String professionList(@PathVariable(name = "obid") Integer obid,
+                                 Model model){
+        List<Profession> professionList = professionMapper.selectByObid(obid);
+        model.addAttribute("professions",professionList);
+        return "professionList";
     }
 
     @RequestMapping("/professionSC/{pid}")

@@ -11,6 +11,7 @@ public class ProfessionDTO {
     private Integer pid;
     private String proname;
     private String object;
+    private Integer obid;
     private School scid;
     private String pfdescription;
 //    private T_School_Profession maxscore;

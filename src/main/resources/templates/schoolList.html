@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+    <title>院校大全</title>
+    <meta name="viewport" http-equiv="Content-Type" content="text/html; charset=UTF-8;width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/docs/css/bootstrap-example.min.css" type="text/css">
+    <link rel="stylesheet" href="/docs/css/prettify.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/college.css">
+    <link rel="stylesheet" href="/css/bootstrap-select.min.css">
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+    <script type="text/javascript" src="/docs/js/prettify.min.js"></script>
+    <link rel="stylesheet" href="/dist/css/bootstrap-multiselect.css" type="text/css">
+    <script type="text/javascript" src="/dist/js/bootstrap-multiselect.js"></script>
+    <script src="/js/moment.js" type="application/javascript"></script>
+    <script src="/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            window.prettyPrint() && prettyPrint();
+        });
+        // 插件实例
+        $(document).ready(function () {
+            $("#typeId").multiselect();
+            // 点击事件获取所有选中option的value值
+            $("#btn").click(function () {
+                var selectValueStr = [];
+                $("#typeId option:selected").each(function () {
+                    selectValueStr.push($(this).val());
+                })
+                console.log(selectValueStr)
+            })
+        });
+        $(window).on('load', function () {
+            $('.selectpicker').selectpicker({
+                'selectedText': 'cat'
+            });
+            // $('.selectpicker').selectpicker('hide');  
+        });
+    </script>
+</head>
+<body class="diamond" >
+    <div th:fragment="nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="glyphicon glyphicon-align-justify navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" style="margin-right: 30px;margin-top: 8px">
+                        <span class=" sr-only">Toggle navigation</span>
+                    </button>
+                    <a class="navbar-brand" href="/school">院校大全</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<!--                    <form class="navbar-form navbar-nav"  action='/schoolSearchList'>-->
+<!--                            <select class="selectpicker" id="ctc3" name="select" multiple  data-live-search="true" data-actions-box="true" >-->
+<!--                                <option  th:each="area:${areas}" th:value="${area.areaname}" th:text="${area.areaname}"></option>-->
+<!--                            </select>-->
+<!--                        <button type="submit" class="btn btn-default">查询</button>-->
+<!--                    </form>-->
+                    <form class="navbar-form navbar-nav " action="/schoolSearchList" method="get">
+                        <div class="form-group ">
+                            <input type="text" class="form-control " name="search" value=" ">
+                        </div>
+                        <button type="submit" class="btn btn-default">搜索</button>
+                    </form>
+                    <ul class="nav navbar-nav">
+                        <li th:if="${session.loginUser.pay != null}">
+                            <a href="/schoolSearch">高级搜索</a>
+                        </li>
+                        <li th:if="${session.loginUser.pay == null}">
+                            <a href="javascript:alert('未付费，请先付费成为高级用户！')">高级搜索</a>
+                        </li>
+                    </ul>
+                    <form th:if="${session.loginUser.admin != null}" class="navbar-form navbar-nav" id="form_table" action="/importSchool" enctype="multipart/form-data" method="post">
+                        <div class="form-group">
+                            <input class="form-input" type="file" name="filename">
+                        </div>
+                        <button type="submit" class="btn btn-default">导入</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/">首页</a></li>
+                        <li th:if="${session.loginUser != null}" class="dropdown">
+                            <a href="/profile" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                               aria-expanded="false">
+                                <span  th:text="${session.loginUser.username}"></span>
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/front/logout">退出登录</a></li>
+                            </ul>
+                        </li>
+                        <li th:if="${session.loginUser == null}">
+                            <button  onclick="window.location.href = '/front/login'" type="button" class="btn btn-default navbar-btn" style="margin-right: 20px">
+                                登录
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="contentDiv">
+        <div class="container-fluid">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <ul class="list-group" th:each="school:${schools}">
+                    <li class="media" >
+                        <a th:href="@{'/school_desc_l/'+${school.scid}}" style="text-decoration: none;">
+                            <div class="media-body" >
+                                <h4 class="media-heading" th:text="${school.name}"></h4>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

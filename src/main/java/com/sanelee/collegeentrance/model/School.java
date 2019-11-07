@@ -14,5 +14,7 @@ public class School{
     private String batch;
     private String description;
     private String acronym;
+    private String region;
+    private Integer reid;
 
 }

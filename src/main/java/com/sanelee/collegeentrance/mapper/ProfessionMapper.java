@@ -30,4 +30,10 @@ public interface ProfessionMapper {
 
     @Update("update profession set object = #{object},pfdescription = #{pfdescription} where proname = #{proname}")
     int updateProfession(Profession professionInfo);
+
+    @Select("SELECT DISTINCT object,obid FROM profession;")
+    List<Profession> objectObid();
+
+    @Select("select * from profession where obid=#{obid}")
+    List<Profession> selectByObid(@Param("obid") int obid);
 }
