@@ -5,5 +5,7 @@ create table user
         primary key,
     userName varchar(32)  not null,
     passWord varchar(50)  not null,
-    token    varchar(255) null
+    token    varchar(255) null,
+    pay      int(10)      null
 );
+

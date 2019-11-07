@@ -17,3 +17,4 @@ create table t_school_profession
 
 create index pid
     on t_school_profession (pid);
+
