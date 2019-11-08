@@ -64,7 +64,7 @@
                 <div class="panel-body">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="menu row" >
-                            <div class="col-xs-4 col-md-4 school-icon " th:each="object:${objects}">
+                            <div class="col-xs-4 col-md-2 school-icon " th:each="object:${objects}">
                                 <a class="glyphicon glyphicon-book" th:href="@{'/professionList/'+${object.obid}}" style="text-decoration: none;"></a>
                                 <h4 th:text="${object.object}"></h4>
                             </div>
