@@ -52,8 +52,11 @@
         <div class="panel-body">
             <h2 th:text="${schools.name}"></h2>
             <h4 th:text="${schools.acronym}"></h4>
-            <h6 th:text="'所在地区：'+${schools.areaname}+'&nbsp;'+'&nbsp;'+'&nbsp;'+'&nbsp;'+'类型：'+${schools.batch}+'&nbsp;'+'&nbsp;'+'&nbsp;'+'&nbsp;'+'&nbsp;'+'性质：'+'&nbsp;'+'&nbsp;'+'&nbsp;'+'&nbsp;'"></h6>
-        </div>
+            <p class="row">
+            <h5 th:text="'所在地区：'+${schools.areaname}+'&nbsp;'+'&nbsp;'+'&nbsp;'+'&nbsp;'+'类型：'+${schools.type}+'&nbsp;'+'&nbsp;'+'&nbsp;'+'&nbsp;'+'隶属：'+${schools.department}"></h5>
+            <h5 th:if="${schools.is985 != 0}">985</h5>
+            <h5 th:if="${schools.is211 != 0}">211</h5>
+            </p>        </div>
     </div>
 </div>
 <div>

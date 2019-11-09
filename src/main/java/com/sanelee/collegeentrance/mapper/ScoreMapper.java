@@ -6,13 +6,13 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 @Mapper
 public interface ScoreMapper {
-    @Select("select * from score")
+    @Select("select * from score where aid=6")
     List<Score> list();
 
-    @Select("select * from score where scid=#{scid} and sid = 1")
+    @Select("select * from score where scid=#{scid} and sid = 1 and aid = 6")
     List<Score> listL(@Param("scid") Integer scid);
 
-    @Select("select * from score where scid=#{scid} and sid = 2")
+    @Select("select * from score where scid=#{scid} and sid = 2 and aid = 6")
     List<Score> listW(@Param("scid") Integer scid);
 
     @Select("select * from score where scid=#{scid}")
