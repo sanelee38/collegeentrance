@@ -303,6 +303,8 @@ public class SchoolService {
 
 
 
+
+
             XSSFRow xssfRow = xssfSheet.getRow(line);
             if (null == xssfRow) {
                 continue;
@@ -519,6 +521,22 @@ public class SchoolService {
                 schoolWeb = null;
             }
 
+            XSSFCell regionCell = null;
+            regionCell = xssfRow.getCell(27);
+            if (regionCell != null){
+                region = regionCell.getStringCellValue();
+            }else if (regionCell == null){
+                region = null;
+            }
+
+            XSSFCell reidCell = null;
+            reidCell = xssfRow.getCell(25);
+            if (reidCell != null){
+                reid = (int) reidCell.getNumericCellValue();
+            }else if (reidCell == null){
+                reid = 0;
+            }
+
 
 
 
@@ -548,6 +566,8 @@ public class SchoolService {
             school.setUndergraEnrollNum(undergraEnrollNum);
             school.setPostgraEnrollNum(postgraEnrollNum);
             school.setSchoolWeb(schoolWeb);
+            school.setReid(reid);
+            school.setRegion(region);
 
             schoolList.add(school);
 

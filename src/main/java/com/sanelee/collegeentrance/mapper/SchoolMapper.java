@@ -66,7 +66,7 @@ public interface SchoolMapper {
     @Select("SELECT DISTINCT areaname,areaid FROM school WHERE reid=#{reid};")
     List<School> selectAreaByReid(@Param("reid") int reid);
 
-    @Select("select count(*) from school where scid=#{name}")
+    @Select("select count(*) from school where name=#{name}")
     int selectSchool(String name);
 
     @Insert("insert into school (name,areaname,areaid,batch,description,acronym,usedname,type,foundingYear,department,isCombine,is985,is211,isDoubleFirstClass,firstClassNum,facultyNum,academicianNum,changjiangScholarNum,teachersNum,undergraProNum,postgraProNum,doctorProNum,mainLabNum,undergraEnrollNum,postgraEnrollNum,schoolWeb) values(#{name},#{areaname},#{areaid},#{batch},#{description},#{acronym},#{usedname},#{type},#{foundingYear},#{department},#{iscombine},#{is985},#{is211},#{isDoubleFirstClass},#{firstClassNum},#{facultyNum},#{academicianNum},#{changjiangScholarNum},#{teachersNum},#{undergraProNum},#{postgraProNum},#{doctorProNum},#{mainLabNum},#{undergraEnrollNum},#{postgraEnrollNum},#{schoolWeb})")
