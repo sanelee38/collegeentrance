@@ -127,12 +127,10 @@ public class SchoolService {
         return schoolDTOList;
     }
 
-    public int addSchool(MultipartFile file) {
+    public int addSchoolScore(MultipartFile file) {
         int result = 0;
         List<T_School_Profession> t_school_professionList = new ArrayList<>();
 
-        String fileName = file.getOriginalFilename();
-        String suffix = fileName.substring(fileName.lastIndexOf(".") + 1);
 
         InputStream ins = null;
         try {
@@ -250,6 +248,323 @@ public class SchoolService {
                 result = t_school_professionMapper.updateSchoolProfession(t_school_professionInfo);
             }
         }
+        return result;
+    }
+
+    public int addSchool(MultipartFile file) {
+        int result = 0;
+        List<School> schoolList = new ArrayList<>();
+
+        InputStream ins = null;
+        try {
+            ins = file.getInputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        XSSFWorkbook xssfWorkbook = null;
+        try {
+            xssfWorkbook = new XSSFWorkbook(ins);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        XSSFSheet xssfSheet = xssfWorkbook.getSheetAt(0);
+        for (int line = 1; line <= xssfSheet.getLastRowNum(); line++) {
+
+            School school = new School();
+            String name = null;
+            String areaname = null;
+            int areaid = 0;
+            String batch = null;
+            String description = null;
+            String acronym = null;
+            String region = null;
+            int reid = 0;
+            String usedname = null;
+            String type = null;
+            int foundingYear = 0;
+            String department = null;
+            String iscombine = null;
+            int is985 = 0;
+            int is211 = 0;
+            String isDoubleFirstClass = null;
+            int firstClassNum = 0;
+            int facultyNum = 0;
+            int academicianNum = 0;
+            int changjiangScholarNum = 0;
+            int teachersNum = 0;
+            int undergraProNum = 0;
+            int postgraProNum = 0;
+            int doctorProNum = 0;
+            int mainLabNum = 0;
+            int undergraEnrollNum = 0;
+            int postgraEnrollNum = 0;
+            String schoolWeb = null;
+
+
+
+            XSSFRow xssfRow = xssfSheet.getRow(line);
+            if (null == xssfRow) {
+                continue;
+            }
+
+
+            XSSFCell nameCell = null;
+            nameCell = xssfRow.getCell(1);
+            if (nameCell != null){
+                name = nameCell.getStringCellValue();
+            }else if (nameCell == null){
+                name = null;
+            }
+            XSSFCell areanameCell = null;
+            areanameCell = xssfRow.getCell(2);
+            if (areanameCell != null){
+                areaname = areanameCell.getStringCellValue();
+            }else if (areanameCell == null){
+                areaname = null;
+            }
+
+            XSSFCell areaidCell = null;
+            areaidCell = xssfRow.getCell(3);
+            if (areaidCell != null) {
+                areaid = (int) areaidCell.getNumericCellValue();
+            }else if (areaidCell == null){
+                areaid = 0;
+            }
+
+            XSSFCell batchCell = null;
+            batchCell = xssfRow.getCell(4);
+            if (batchCell != null){
+                batch = batchCell.getStringCellValue();
+            }else if (batchCell == null){
+                batch = null;
+            }
+
+            XSSFCell usednameCell = null;
+            usednameCell = xssfRow.getCell(5);
+            if (usednameCell != null){
+                usedname = usednameCell.getStringCellValue();
+            }else if (usednameCell == null){
+                usedname = null;
+            }
+
+            XSSFCell acronymCell = null;
+            acronymCell = xssfRow.getCell(6);
+            if (acronymCell != null){
+                acronym = acronymCell.getStringCellValue();
+            }else if (acronymCell == null){
+                acronym = null;
+            }
+
+            XSSFCell descriptionCell = null;
+            descriptionCell = xssfRow.getCell(7);
+            if (descriptionCell != null){
+                description = descriptionCell.getStringCellValue();
+            }else if (descriptionCell == null){
+                description = null;
+            }
+
+            XSSFCell typeCell = null;
+            typeCell = xssfRow.getCell(8);
+            if (typeCell != null){
+                type = typeCell.getStringCellValue();
+            }else if (typeCell == null){
+                type = null;
+            }
+
+            XSSFCell foundingYearCell = null;
+            foundingYearCell = xssfRow.getCell(9);
+            if (foundingYearCell != null) {
+                foundingYear = (int) foundingYearCell.getNumericCellValue();
+            }else if (foundingYearCell == null){
+                foundingYear= 0;
+            }
+
+            XSSFCell departmentCell = null;
+            departmentCell = xssfRow.getCell(10);
+            if (departmentCell != null){
+                department = departmentCell.getStringCellValue();
+            }else if (departmentCell == null){
+                department = null;
+            }
+
+            XSSFCell iscombineCell = null;
+            iscombineCell = xssfRow.getCell(11);
+            if (iscombineCell != null){
+                iscombine = iscombineCell.getStringCellValue();
+            }else if (iscombineCell == null){
+                iscombine = null;
+            }
+
+
+            XSSFCell is985Cell = null;
+            is985Cell = xssfRow.getCell(12);
+            if (is985Cell != null) {
+                is985 = (int) is985Cell.getNumericCellValue();
+            }else if (is985Cell == null){
+                is985 = 0;
+            }
+
+            XSSFCell is211Cell = null;
+            is211Cell = xssfRow.getCell(13);
+            if (is211Cell != null) {
+                is211 = (int) is211Cell.getNumericCellValue();
+            }else if (is211Cell == null){
+                is211 = 0;
+            }
+
+            XSSFCell isDoubleFirstClassCell = null;
+            isDoubleFirstClassCell = xssfRow.getCell(14);
+            if (isDoubleFirstClassCell != null){
+                isDoubleFirstClass = isDoubleFirstClassCell.getStringCellValue();
+            }else if (isDoubleFirstClassCell == null){
+                isDoubleFirstClass = null;
+            }
+
+            XSSFCell firstClassNumCell = null;
+            firstClassNumCell = xssfRow.getCell(15);
+            if (firstClassNumCell != null){
+                firstClassNum = (int) firstClassNumCell.getNumericCellValue();
+            }else if (firstClassNumCell == null){
+                firstClassNum = 0;
+            }
+
+            XSSFCell facultyNumCell = null;
+            facultyNumCell = xssfRow.getCell(16);
+            if (facultyNumCell != null){
+                facultyNum = (int) facultyNumCell.getNumericCellValue();
+            }else if (facultyNumCell == null){
+                facultyNum = 0;
+            }
+
+            XSSFCell academicianNumCell = null;
+            academicianNumCell = xssfRow.getCell(17);
+            if (academicianNumCell != null){
+                academicianNum = (int) academicianNumCell.getNumericCellValue();
+            }else if (academicianNumCell == null){
+                academicianNum = 0;
+            }
+
+
+            XSSFCell changjiangScholarNumCell = null;
+            changjiangScholarNumCell = xssfRow.getCell(18);
+            if (changjiangScholarNumCell != null){
+                changjiangScholarNum = (int) changjiangScholarNumCell.getNumericCellValue();
+            }else if (changjiangScholarNumCell == null){
+                changjiangScholarNum = 0;
+            }
+
+
+            XSSFCell teachersNumCell = null;
+            teachersNumCell = xssfRow.getCell(19);
+            if (teachersNumCell != null){
+                teachersNum = (int) teachersNumCell.getNumericCellValue();
+            }else if (teachersNumCell == null){
+                teachersNum = 0;
+            }
+
+            XSSFCell undergraProNumCell = null;
+            undergraProNumCell = xssfRow.getCell(20);
+            if (undergraProNumCell != null){
+                undergraProNum = (int) undergraProNumCell.getNumericCellValue();
+            }else if (undergraProNumCell == null){
+                undergraProNum = 0;
+            }
+
+            XSSFCell postgraProNumCell = null;
+            postgraProNumCell = xssfRow.getCell(21);
+            if (postgraProNumCell != null){
+                postgraProNum = (int) postgraProNumCell.getNumericCellValue();
+            }else if (postgraProNumCell == null){
+                postgraProNum = 0;
+            }
+
+            XSSFCell doctorProNumCell = null;
+            doctorProNumCell = xssfRow.getCell(22);
+            if (doctorProNumCell != null){
+                doctorProNum = (int) doctorProNumCell.getNumericCellValue();
+            }else if (doctorProNumCell == null){
+                doctorProNum = 0;
+            }
+
+            XSSFCell mainLabNumCell = null;
+            mainLabNumCell = xssfRow.getCell(23);
+            if (mainLabNumCell != null){
+                mainLabNum = (int) mainLabNumCell.getNumericCellValue();
+            }else if (mainLabNumCell == null){
+                mainLabNum = 0;
+            }
+
+            XSSFCell undergraEnrollNumCell = null;
+            undergraEnrollNumCell = xssfRow.getCell(24);
+            if (undergraEnrollNumCell != null){
+                undergraEnrollNum = (int) undergraEnrollNumCell.getNumericCellValue();
+            }else if (undergraEnrollNumCell == null){
+                undergraEnrollNum = 0;
+            }
+
+            XSSFCell postgraEnrollNumCell = null;
+            postgraEnrollNumCell = xssfRow.getCell(25);
+            if (postgraEnrollNumCell != null){
+                postgraEnrollNum = (int) postgraEnrollNumCell.getNumericCellValue();
+            }else if (postgraEnrollNumCell == null){
+                postgraEnrollNum = 0;
+            }
+
+            XSSFCell schoolWebCell = null;
+            schoolWebCell = xssfRow.getCell(26);
+            if (schoolWebCell != null){
+                schoolWeb = schoolWebCell.getStringCellValue();
+            }else if (schoolWebCell == null){
+                schoolWeb = null;
+            }
+
+
+
+
+            school.setName(name);
+            school.setAreaname(areaname);
+            school.setAreaid(areaid);
+            school.setBatch(batch);
+            school.setUsedname(usedname);
+            school.setAcronym(acronym);
+            school.setDescription(description);
+            school.setType(type);
+            school.setFoundingYear(foundingYear);
+            school.setDepartment(department);
+            school.setIscombine(iscombine);
+            school.setIs985(is985);
+            school.setIs211(is211);
+            school.setIsDoubleFirstClass(isDoubleFirstClass);
+            school.setFirstClassNum(firstClassNum);
+            school.setFacultyNum(facultyNum);
+            school.setAcademicianNum(academicianNum);
+            school.setChangjiangScholarNum(changjiangScholarNum);
+            school.setTeachersNum(teachersNum);
+            school.setUndergraProNum(undergraProNum);
+            school.setPostgraProNum(postgraProNum);
+            school.setDoctorProNum(doctorProNum);
+            school.setMainLabNum(mainLabNum);
+            school.setUndergraEnrollNum(undergraEnrollNum);
+            school.setPostgraEnrollNum(postgraEnrollNum);
+            school.setSchoolWeb(schoolWeb);
+
+            schoolList.add(school);
+
+        }
+
+        for (School schoolInfo : schoolList) {
+
+            String name = schoolInfo.getName();
+
+            int count = schoolMapper.selectSchool(name);
+            if (0 == count) {
+                result = schoolMapper.addSchool(schoolInfo);
+            } else {
+                result = schoolMapper.updateSchool(schoolInfo);
+            }
+        }
+
         return result;
     }
 }

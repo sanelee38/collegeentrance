@@ -161,11 +161,30 @@ public class SchoolController {
         response.flushBuffer();
         workbook.write(response.getOutputStream());
     }
-    @RequestMapping("/importSchool")
-    public String excelImport(@RequestParam(value="filename") MultipartFile file,
-                              HttpSession session,
+    @RequestMapping("/importSchoolScore")
+    public String excelImportScore(@RequestParam(value="filename") MultipartFile file,
                               HashMap<String, Object> map,
                               Model model){
+        int result = 0;
+        try{
+            result =schoolService.addSchoolScore(file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (result>0){
+            model.addAttribute("import","excle文件数据导入成功！");
+            map.put("path","school");
+        }else {
+            model.addAttribute("import","excle文件数据导入失败！");
+            map.put("path","school");
+        }
+        return "import";
+    }
+
+    @RequestMapping("/importSchool")
+    public String excelImportSchool(@RequestParam(value="filename") MultipartFile file,
+                                    HashMap<String, Object> map,
+                                    Model model){
         int result = 0;
         try{
             result =schoolService.addSchool(file);
@@ -181,5 +200,4 @@ public class SchoolController {
         }
         return "import";
     }
-
 }
