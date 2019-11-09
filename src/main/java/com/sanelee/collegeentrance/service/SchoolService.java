@@ -530,7 +530,7 @@ public class SchoolService {
             }
 
             XSSFCell reidCell = null;
-            reidCell = xssfRow.getCell(25);
+            reidCell = xssfRow.getCell(28);
             if (reidCell != null){
                 reid = (int) reidCell.getNumericCellValue();
             }else if (reidCell == null){
