@@ -311,14 +311,14 @@ public class SchoolService {
             }
 
 
-            XSSFCell nameCell = null;
+            XSSFCell nameCell;
             nameCell = xssfRow.getCell(1);
             if (nameCell != null){
                 name = nameCell.getStringCellValue();
             }else if (nameCell == null){
                 name = null;
             }
-            XSSFCell areanameCell = null;
+            XSSFCell areanameCell;
             areanameCell = xssfRow.getCell(2);
             if (areanameCell != null){
                 areaname = areanameCell.getStringCellValue();
@@ -326,7 +326,7 @@ public class SchoolService {
                 areaname = null;
             }
 
-            XSSFCell areaidCell = null;
+            XSSFCell areaidCell;
             areaidCell = xssfRow.getCell(3);
             if (areaidCell != null) {
                 areaid = (int) areaidCell.getNumericCellValue();
@@ -334,7 +334,7 @@ public class SchoolService {
                 areaid = 0;
             }
 
-            XSSFCell batchCell = null;
+            XSSFCell batchCell;
             batchCell = xssfRow.getCell(4);
             if (batchCell != null){
                 batch = batchCell.getStringCellValue();
@@ -342,7 +342,7 @@ public class SchoolService {
                 batch = null;
             }
 
-            XSSFCell usednameCell = null;
+            XSSFCell usednameCell;
             usednameCell = xssfRow.getCell(5);
             if (usednameCell != null){
                 usedname = usednameCell.getStringCellValue();
@@ -350,7 +350,7 @@ public class SchoolService {
                 usedname = null;
             }
 
-            XSSFCell acronymCell = null;
+            XSSFCell acronymCell;
             acronymCell = xssfRow.getCell(6);
             if (acronymCell != null){
                 acronym = acronymCell.getStringCellValue();
@@ -358,7 +358,7 @@ public class SchoolService {
                 acronym = null;
             }
 
-            XSSFCell descriptionCell = null;
+            XSSFCell descriptionCell;
             descriptionCell = xssfRow.getCell(7);
             if (descriptionCell != null){
                 description = descriptionCell.getStringCellValue();
@@ -366,7 +366,7 @@ public class SchoolService {
                 description = null;
             }
 
-            XSSFCell typeCell = null;
+            XSSFCell typeCell;
             typeCell = xssfRow.getCell(8);
             if (typeCell != null){
                 type = typeCell.getStringCellValue();
@@ -374,7 +374,7 @@ public class SchoolService {
                 type = null;
             }
 
-            XSSFCell foundingYearCell = null;
+            XSSFCell foundingYearCell;
             foundingYearCell = xssfRow.getCell(9);
             if (foundingYearCell != null) {
                 foundingYear = (int) foundingYearCell.getNumericCellValue();
@@ -382,7 +382,7 @@ public class SchoolService {
                 foundingYear= 0;
             }
 
-            XSSFCell departmentCell = null;
+            XSSFCell departmentCell;
             departmentCell = xssfRow.getCell(10);
             if (departmentCell != null){
                 department = departmentCell.getStringCellValue();
@@ -390,7 +390,7 @@ public class SchoolService {
                 department = null;
             }
 
-            XSSFCell iscombineCell = null;
+            XSSFCell iscombineCell;
             iscombineCell = xssfRow.getCell(11);
             if (iscombineCell != null){
                 iscombine = iscombineCell.getStringCellValue();
@@ -399,7 +399,7 @@ public class SchoolService {
             }
 
 
-            XSSFCell is985Cell = null;
+            XSSFCell is985Cell;
             is985Cell = xssfRow.getCell(12);
             if (is985Cell != null) {
                 is985 = (int) is985Cell.getNumericCellValue();
@@ -407,7 +407,7 @@ public class SchoolService {
                 is985 = 0;
             }
 
-            XSSFCell is211Cell = null;
+            XSSFCell is211Cell;
             is211Cell = xssfRow.getCell(13);
             if (is211Cell != null) {
                 is211 = (int) is211Cell.getNumericCellValue();
@@ -415,7 +415,7 @@ public class SchoolService {
                 is211 = 0;
             }
 
-            XSSFCell isDoubleFirstClassCell = null;
+            XSSFCell isDoubleFirstClassCell;
             isDoubleFirstClassCell = xssfRow.getCell(14);
             if (isDoubleFirstClassCell != null){
                 isDoubleFirstClass = isDoubleFirstClassCell.getStringCellValue();
@@ -423,7 +423,7 @@ public class SchoolService {
                 isDoubleFirstClass = null;
             }
 
-            XSSFCell firstClassNumCell = null;
+            XSSFCell firstClassNumCell;
             firstClassNumCell = xssfRow.getCell(15);
             if (firstClassNumCell != null){
                 firstClassNum = (int) firstClassNumCell.getNumericCellValue();
@@ -431,7 +431,7 @@ public class SchoolService {
                 firstClassNum = 0;
             }
 
-            XSSFCell facultyNumCell = null;
+            XSSFCell facultyNumCell;
             facultyNumCell = xssfRow.getCell(16);
             if (facultyNumCell != null){
                 facultyNum = (int) facultyNumCell.getNumericCellValue();
@@ -439,7 +439,7 @@ public class SchoolService {
                 facultyNum = 0;
             }
 
-            XSSFCell academicianNumCell = null;
+            XSSFCell academicianNumCell;
             academicianNumCell = xssfRow.getCell(17);
             if (academicianNumCell != null){
                 academicianNum = (int) academicianNumCell.getNumericCellValue();
@@ -448,7 +448,7 @@ public class SchoolService {
             }
 
 
-            XSSFCell changjiangScholarNumCell = null;
+            XSSFCell changjiangScholarNumCell;
             changjiangScholarNumCell = xssfRow.getCell(18);
             if (changjiangScholarNumCell != null){
                 changjiangScholarNum = (int) changjiangScholarNumCell.getNumericCellValue();
@@ -457,7 +457,7 @@ public class SchoolService {
             }
 
 
-            XSSFCell teachersNumCell = null;
+            XSSFCell teachersNumCell;
             teachersNumCell = xssfRow.getCell(19);
             if (teachersNumCell != null){
                 teachersNum = (int) teachersNumCell.getNumericCellValue();
@@ -465,7 +465,7 @@ public class SchoolService {
                 teachersNum = 0;
             }
 
-            XSSFCell undergraProNumCell = null;
+            XSSFCell undergraProNumCell;
             undergraProNumCell = xssfRow.getCell(20);
             if (undergraProNumCell != null){
                 undergraProNum = (int) undergraProNumCell.getNumericCellValue();
@@ -473,7 +473,7 @@ public class SchoolService {
                 undergraProNum = 0;
             }
 
-            XSSFCell postgraProNumCell = null;
+            XSSFCell postgraProNumCell;
             postgraProNumCell = xssfRow.getCell(21);
             if (postgraProNumCell != null){
                 postgraProNum = (int) postgraProNumCell.getNumericCellValue();
