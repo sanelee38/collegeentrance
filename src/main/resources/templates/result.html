@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+    <title>测试结果</title>
+    <meta name="viewport" http-equiv="Content-Type" content="text/html; charset=UTF-8;width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/college.css">
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <h5>你的人格类型是<h4 th:text="${result.type}"></h4>
+    </h5>
+    <h5>
+        你的适合职业为：
+        <h4 th:text="${result.vocation}"></h4>
+    </h5>
+    <a href="/vocation" style="text-decoration: none;">
+        点击返回测试页面
+    </a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+    <title>性格测试</title>
+    <meta name="viewport" http-equiv="Content-Type" content="text/html; charset=UTF-8;width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/college.css">
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+</head>
+<body>
+<div class="row container-fluid">
+    <div class="panel panel-default container-fluid col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="panel-heading">
+            <h4>
+                人的个性与职业有着密切的关系，不同职业对从业者的人格特征的要求是有差距的，如
+                果通过科学的测试，可以预知自己的个性特征，这有助于选择适合于个人发展的职业。
+                您将要阅读的这个《职业价格自测问卷》，可以帮助您作个性自评，从而获自己的个性
+                特征更适合从事哪方面的工作。
+            </h4>
+        </div>
+        <div class="panel-body">
+            <h4>请根据对每一题目的第一印象作答，不必仔细推敲，答案没有好坏、对错之分。</h4>
+            <form class="form-inline" action="/result" style="text-align: center;margin-top: 50px">
+                <ul class="list-group" th:each="questions:${question}">
+                    <div>
+                        <h4 th:text="${questions.item}"></h4>
+                        <label class="radio-inline">
+                            <input type="radio" th:name="'radio'+${questions.id}"  th:value="${questions.value1}"> 是
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" th:name="'radio'+${questions.id}"  th:value="${questions.value2}"> 否
+                        </label>
+                    </div>
+                </ul>
+                <div style="text-align: center">
+                    <div style="display: inline"><button type="submit" class="btn btn-primary">提交</button></div>
+                    <div style="display: inline"><a href="/">
+                        <button  class="btn btn-primary">退出测试</button>
+                    </a>
+                    </div></div>
+            </form>
+
+
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
