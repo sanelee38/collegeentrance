@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
@@ -67,7 +68,8 @@ public class ReportController {
         params.put("userScore",score);
         params.put("userRank",rank);
 
-        ExportWordUtils.exportWord("word/template.docx","F:/test","高考志愿报告.docx",params,request,response);
+        InputStream is = this.getClass().getResourceAsStream("/word/template.docx");
+        ExportWordUtils.exportWord(is,"D:/test","高考志愿报告.docx",params,request,response);
     }
     @RequestMapping(value = "GaoKaoQueryReportExcelDownloads",method = RequestMethod.GET)
     public void downloadAllClassmate(HttpServletResponse response,
