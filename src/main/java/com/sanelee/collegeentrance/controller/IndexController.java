@@ -57,17 +57,30 @@ public class IndexController {
     @RequestMapping("/addregister")
     public String register(HttpServletRequest request, Map<String,Object> map){
         String username = request.getParameter("username");
+        String userPhone = request.getParameter("userPhone");
         String password = request.getParameter("password");
         String password2 = request.getParameter("password2");
         User userIdentify = userMapper.findByUsername(username);
-        if (password.equals(password2)&&userIdentify==null){
+        User userIdentify2=userMapper.findByUserPhone(userPhone);
+        if (password.equals(password2)&&userIdentify==null&&userIdentify2==null){
             User user = new User();
             user.setUsername(username);
+            user.setUserPhone(userPhone);
             user.setPassword(password);
             userMapper.save(user);
+            System.out.println(username);
+            System.out.println(userPhone);
             map.put("msg","注册成功,请登录！");
             return "login";
-        }else {
+        }else if(userPhone.equals("")){
+            map.put("msg","请输入手机号！");
+            return "register";
+        }
+        else if(userIdentify2!=null){
+            map.put("msg","该手机号已经注册！");
+            return "register";
+        }
+        else {
             map.put("msg","密码不一致或用户名已存在！");
             return "register";
         }

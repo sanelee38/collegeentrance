@@ -8,10 +8,20 @@
     <link rel="stylesheet" href="/css/college.css">
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+    <script type="text/javascript">
+        function downloadFile(){
+            document.demo.action="/GaoKaoQueryReportExcelDownloads";
+            document.demo.submit();
+        }
+        function query(){
+            document.demo.action="/major";
+            document.demo.submit();
+        }
+    </script>
 </head>
 <body>
 <div class="container">
-    <form class="form-inline" action="/major" method="get ">
+    <form name="demo" class="form-inline"  >
         <div class="form-group">
 
             <div class="form-group">
@@ -81,7 +91,8 @@
             </div>
 
         </div>
-        <button type="submit" class="btn btn-primary">查询提交</button>
+        <button class="btn btn-default" onclick="query();">查询提交</button>
+        <button class="btn btn-default" onclick="downloadFile();">数据导出</button>
     </form>
 </div>
 

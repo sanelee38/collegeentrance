@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.*;
 @Mapper
 public interface UserMapper{
 
-    @Insert("insert into user (username,password) values(#{username},#{password})")
+    @Insert("insert into user (username,password,userPhone) values(#{username},#{password},#{userPhone})")
     void save(User user);
 
     @Select("select * from user where username = #{username} and password = #{password}")
@@ -20,4 +20,19 @@ public interface UserMapper{
 
     @Update("update user set token = #{token} where username = #{username}")
     void update(User user);
+
+    @Select("select * from user")
+    User user();
+
+    @Select("select * from user where userRealname = #{userRealname} and userphone=#{userPhone}")
+    User findByUserNameAndUserPhone(@Param("userRealname") String userRealname, @Param("userPhone")String userPhone);
+
+    @Insert("UPDATE USER SET userRealname=#{userRealname},usergender=#{userGender},userwechat=#{userWechat},userscore=#{userScore},userarea=#{userArea},usersort=#{userSort},userrank=#{userRank} where userPhone=#{userPhone}")
+    void saveUser(User user);
+
+    @Select("select * from user where userPhone = #{userPhone}")
+    User findByUserPhone(@Param("userPhone")String userPhone);
+
+    @Select("select * from user where username = #{username}")
+    User selectUserInfoByUsername(@Param("username") String username);
 }

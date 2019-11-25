@@ -24,7 +24,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/">首页</a></li>
-                    <li th:if="${session.loginUser != null}" class="dropup">
+                    <li th:if="${session.loginUser != null}" class="dropdown">
                         <a href="/profile" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">
                             <span  th:text="${session.loginUser.username}"></span>
