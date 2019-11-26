@@ -49,7 +49,7 @@ public class ReportController {
                                 @RequestParam(name = "direction5",required = false) String direction5,
                                 @RequestParam(name = "direction6",required = false) String direction6){
         User user=userMapper.selectUserInfoByUsername(username);
-        String name=user.getUsername();
+        String name=user.getUserRealname();
         String gender = user.getUserGender();
         String phone = user.getUserPhone();
         String wechat = user.getUserWechat();
