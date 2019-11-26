@@ -20,6 +20,35 @@
     </script>
 </head>
 <body>
+<div th:fragment="nav">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/#">高考查询</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/">首页</a></li>
+                    <li th:if="${session.loginUser != null}" class="dropdown">
+                        <a href="/profile" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            <span  th:text="${session.loginUser.username}"></span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/front/logout">退出登录</a></li>
+                        </ul>
+                    </li>
+                    <li th:if="${session.loginUser == null}">
+                        <button  onclick="window.location.href = '/front/login'" type="button" class="btn btn-default navbar-btn" style="margin-right: 20px">
+                            登录
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
 <div class="container">
     <form name="demo" class="form-inline"  >
         <div class="form-group">
