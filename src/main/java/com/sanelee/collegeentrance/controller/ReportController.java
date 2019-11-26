@@ -40,7 +40,9 @@ public class ReportController {
         return "reportZhiyuan";
     }
     @RequestMapping(value = "/exportreportZhiyuan",method=RequestMethod.POST)
-    public void reportZhiyuan(HttpServletRequest request, HttpServletResponse response,
+    public void reportZhiyuan(Model model,
+                              HttpServletRequest request,
+                              HttpServletResponse response,
                                 @RequestParam(name = "username",required = false) String username,
                                 @RequestParam(name = "province1",required = false) String province1,
                                 @RequestParam(name = "province2",required = false) String province2,
@@ -52,6 +54,7 @@ public class ReportController {
                                 @RequestParam(name = "direction5",required = false) String direction5,
                                 @RequestParam(name = "direction6",required = false) String direction6){
         User user=userMapper.selectUserInfoByUsername(username);
+
         String name=user.getUserRealname();
         String gender = user.getUserGender();
         String phone = user.getUserPhone();
@@ -60,6 +63,8 @@ public class ReportController {
         String area = user.getUserArea();
         int score = user.getUserScore();
         int rank = user.getUserRank();
+        List<Gaokao> schoollist=gaokaoMapper.selectByScore(score);
+        model.addAttribute("school",schoollist);
 
 
         Map<String,Object> params = new HashMap<>();
@@ -73,7 +78,7 @@ public class ReportController {
         params.put("userRank",rank);
 
         InputStream is = this.getClass().getResourceAsStream("/word/template.docx");
-        ExportWordUtils.exportWord(is,"D:/test","高考志愿报告.docx",params,request,response);
+        ExportWordUtils.exportWord(is,"D:/test",name+"的高考志愿报告.docx",params,request,response);
     }
     @RequestMapping(value = "GaoKaoQueryReportExcelDownloads",method = RequestMethod.GET)
     public void downloadAllClassmate(HttpServletResponse response,

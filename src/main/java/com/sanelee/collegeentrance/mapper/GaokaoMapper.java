@@ -13,4 +13,7 @@ import java.util.List;
 public interface GaokaoMapper {
     @Select("select * from gaokao where min<#{score}+5 and min>#{score}-5 and local_province_name=#{province} and local_type_name=#{object}")
     List<Gaokao> searchByScore_Province_Object_Direction(GaokaoQueryDTO gaokaoQueryDTO);
+
+    @Select("select * from gaokao where min=#{score}+10")
+    List<Gaokao> selectByScore(@Param("score") int score);
 }
