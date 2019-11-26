@@ -3,6 +3,7 @@ package com.sanelee.collegeentrance.controller;
 
 import com.sanelee.collegeentrance.Util.ExportWordUtils;
 import com.sanelee.collegeentrance.mapper.AreaMapper;
+import com.sanelee.collegeentrance.mapper.GaokaoMapper;
 import com.sanelee.collegeentrance.mapper.UserMapper;
 import com.sanelee.collegeentrance.model.Gaokao;
 import com.sanelee.collegeentrance.model.User;
@@ -28,6 +29,8 @@ import java.util.Map;
 public class ReportController {
     @Autowired
     private GaokaoService gaokaoService;
+    @Autowired
+    private GaokaoMapper gaokaoMapper;
     @Autowired
     private AreaMapper areaMapper;
     @Autowired
@@ -57,6 +60,7 @@ public class ReportController {
         String area = user.getUserArea();
         int score = user.getUserScore();
         int rank = user.getUserRank();
+
 
         Map<String,Object> params = new HashMap<>();
         params.put("userName",name);

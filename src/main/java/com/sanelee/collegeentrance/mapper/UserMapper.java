@@ -27,7 +27,7 @@ public interface UserMapper{
     @Select("select * from user where userRealname = #{userRealname} and userphone=#{userPhone}")
     User findByUserNameAndUserPhone(@Param("userRealname") String userRealname, @Param("userPhone")String userPhone);
 
-    @Insert("UPDATE USER SET userRealname=#{userRealname},usergender=#{userGender},userwechat=#{userWechat},userscore=#{userScore},userarea=#{userArea},usersort=#{userSort},userrank=#{userRank} where userPhone=#{userPhone}")
+    @Insert("UPDATE user SET userRealname=#{userRealname},usergender=#{userGender},userwechat=#{userWechat},userscore=#{userScore},userarea=#{userArea},usersort=#{userSort},userrank=#{userRank} where userPhone=#{userPhone}")
     void saveUser(User user);
 
     @Select("select * from user where userPhone = #{userPhone}")
