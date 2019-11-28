@@ -47,6 +47,7 @@ public class ExportWordUtils {
                 fileName = new String(fileName.getBytes("utf-8"), "ISO-8859-1");
             }
 
+
             MyXWPFDocument doc = new MyXWPFDocument(is);
             WordExportUtil.exportWord07(doc, params);
 

@@ -16,5 +16,5 @@ public class Gaokao {
     private String spname;
     private String name;
     private String local_type_name;
-    private int page;
+    private int rank;
     }

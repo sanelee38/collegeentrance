@@ -40,7 +40,7 @@
     </nav>
 </div>
 <div class="container">
-    <h4 th:text="${session.loginUser.username}" >请输入志愿意向信息</h4>
+    <h4>请输入志愿意向信息</h4>
     <form class="form-inline" action="/exportreportZhiyuan" method="post">
         <div class="form-group">
             <input type="hidden" name="username" th:value="${session.loginUser.username}">

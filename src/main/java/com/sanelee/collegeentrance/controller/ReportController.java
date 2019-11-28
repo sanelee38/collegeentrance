@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,11 +64,15 @@ public class ReportController {
         String area = user.getUserArea();
         int score = user.getUserScore();
         int rank = user.getUserRank();
-        List<Gaokao> schoollist=gaokaoMapper.selectByScore(score);
-        model.addAttribute("school",schoollist);
+
+        List<Gaokao> schoollist=gaokaoMapper.selectChongBySelect(score,area,province1,province2,province3);
+        List<Gaokao> schoollist2=gaokaoMapper.selectWenBySelect(score,area,province1,province2,province3);
+        List<Gaokao> schoollist3=gaokaoMapper.selectBaoBySelect(score,area,province1,province2,province3);
+
 
 
         Map<String,Object> params = new HashMap<>();
+
         params.put("userName",name);
         params.put("userGender",gender);
         params.put("userNumber",phone);
@@ -76,6 +81,25 @@ public class ReportController {
         params.put("userArea",area);
         params.put("userScore",score);
         params.put("userRank",rank);
+
+
+        String[] array1 = {"chongschool1","chongschool2","chongschool3","chongschool4","chongschool5","chongschool6"};
+        for (int i=0;i<6;i++){
+            array1[i]=schoollist.get(i).getName();
+            params.put("chongschool"+String.valueOf(i+1),array1[i]);
+        }
+        String[] array2 = {"wenschool1","wenschool2","wenschool3","wenschool4","wenschool5","wenschool6"};
+        for (int i=0;i<6;i++){
+            array2[i]=schoollist2.get(i).getName();
+            params.put("wenschool"+String.valueOf(i+1),array2[i]);
+        }
+        String[] array3 = {"baoschool1","baoschool2","baoschool3","baoschool4","baoschool5","baoschool6"};
+        for (int i=0;i<6;i++){
+            array3[i]=schoollist3.get(i).getName();
+            params.put("baoschool"+String.valueOf(i+1),array3[i]);
+        }
+
+        List<Gaokao> schoolProfessionList1 = gaokaoMapper.selectChongSchoolProfession(score,array1[0],area);
 
         InputStream is = this.getClass().getResourceAsStream("/word/template.docx");
         ExportWordUtils.exportWord(is,"D:/test",name+"的高考志愿报告.docx",params,request,response);
